@@ -39,7 +39,7 @@ android {
 dependencies {
     api(libs.kotlinx.datetime)
     api(projects.core.common)
-//    api(projects.core.model)
+    api(projects.core.model)
 
     implementation(libs.coil.kt)
     implementation(libs.coil.kt.svg)
