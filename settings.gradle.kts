@@ -20,8 +20,10 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "My Application"
+rootProject.name = "MyApplication"
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
 //include(":build-logic")
 include(":core")
 include(":core:common")
+include(":core:network")

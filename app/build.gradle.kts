@@ -1,7 +1,7 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.compose.compiler)
+//    alias(libs.plugins.android.application)
+//    alias(libs.plugins.jetbrains.kotlin.android)
+//    alias(libs.plugins.compose.compiler)
 
     alias(libs.plugins.nowinandroid.android.application)//todo rename
     alias(libs.plugins.nowinandroid.android.application.compose)
@@ -12,7 +12,6 @@ plugins {
 }
 
 android {
-    namespace = "com.example.myapplication"
     compileSdk = 34
 
     defaultConfig {
@@ -55,9 +54,12 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    namespace = "com.example.myapplication"
 }
 
 dependencies {
+
+    implementation(projects.core.common)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -92,11 +94,11 @@ dependencies {
     implementation(libs.kotlinx.coroutines.guava)
     implementation(libs.coil.kt)
 
-//    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 
     debugImplementation(libs.androidx.compose.ui.testManifest)
 
-//    kspTest(libs.hilt.compiler)
+    kspTest(libs.hilt.compiler)
 
     testImplementation(libs.hilt.android.testing)
 

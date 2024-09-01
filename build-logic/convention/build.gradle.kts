@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    id("java-library")
+//    id("java-library")
 //    alias(libs.plugins.jetbrains.kotlin.jvm)
     `kotlin-dsl`
 }
