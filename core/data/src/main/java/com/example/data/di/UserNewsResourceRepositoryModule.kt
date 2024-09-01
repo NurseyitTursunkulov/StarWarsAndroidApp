@@ -14,31 +14,20 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.core.network.di
+package com.example.data.di
 
-import com.example.common.network.Dispatcher
-import com.example.common.network.NiaDispatchers.Default
+import com.example.data.repository.CompositeUserNewsResourceRepository
+import com.example.data.repository.UserNewsResourceRepository
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
-import javax.inject.Qualifier
-import javax.inject.Singleton
-
-@Retention(AnnotationRetention.RUNTIME)
-@Qualifier
-annotation class ApplicationScope
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal object CoroutineScopesModule {
-    @Provides
-    @Singleton
-    @ApplicationScope
-    fun providesCoroutineScope(
-        @Dispatcher(Default) dispatcher: CoroutineDispatcher,
-    ): CoroutineScope = CoroutineScope(SupervisorJob() + dispatcher)
+internal interface UserNewsResourceRepositoryModule {
+    @Binds
+    fun bindsUserNewsResourceRepository(
+        userDataRepository: CompositeUserNewsResourceRepository,
+    ): UserNewsResourceRepository
 }

@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 
-package com.example.common.network
+package com.example.data.util
 
-import javax.inject.Qualifier
-import kotlin.annotation.AnnotationRetention.RUNTIME
+import kotlinx.coroutines.flow.Flow
 
-@Qualifier
-@Retention(RUNTIME)
-annotation class Dispatcher(val niaDispatcher: NiaDispatchers)
-
-enum class NiaDispatchers {//todo rename
-    Default,
-    IO,
+/**
+ * Utility for reporting app connectivity status
+ */
+interface NetworkMonitor {
+    val isOnline: Flow<Boolean>
 }

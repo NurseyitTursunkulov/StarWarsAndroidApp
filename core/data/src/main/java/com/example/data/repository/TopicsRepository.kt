@@ -14,16 +14,20 @@
  * limitations under the License.
  */
 
-package com.example.common.network
+package com.example.data.repository
 
-import javax.inject.Qualifier
-import kotlin.annotation.AnnotationRetention.RUNTIME
+import com.example.model.data.Topic
+import com.example.data.Syncable
+import kotlinx.coroutines.flow.Flow
 
-@Qualifier
-@Retention(RUNTIME)
-annotation class Dispatcher(val niaDispatcher: NiaDispatchers)
+interface TopicsRepository : Syncable {
+    /**
+     * Gets the available topics as a stream
+     */
+    fun getTopics(): Flow<List<Topic>>
 
-enum class NiaDispatchers {//todo rename
-    Default,
-    IO,
+    /**
+     * Gets data for a specific topic
+     */
+    fun getTopic(id: String): Flow<Topic>
 }

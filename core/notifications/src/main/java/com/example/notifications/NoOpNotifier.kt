@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 The Android Open Source Project
+ * Copyright 2023 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,14 @@
  * limitations under the License.
  */
 
-package com.example.common.network
+package com.example.notifications
 
-import javax.inject.Qualifier
-import kotlin.annotation.AnnotationRetention.RUNTIME
+import com.example.model.data.NewsResource
+import javax.inject.Inject
 
-@Qualifier
-@Retention(RUNTIME)
-annotation class Dispatcher(val niaDispatcher: NiaDispatchers)
-
-enum class NiaDispatchers {//todo rename
-    Default,
-    IO,
+/**
+ * Implementation of [Notifier] which does nothing. Useful for tests and previews.
+ */
+internal class NoOpNotifier @Inject constructor() : Notifier {
+    override fun postNewsNotifications(newsResources: List<NewsResource>) = Unit
 }

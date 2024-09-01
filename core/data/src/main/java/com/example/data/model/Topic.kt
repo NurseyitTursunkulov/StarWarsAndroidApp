@@ -14,16 +14,17 @@
  * limitations under the License.
  */
 
-package com.example.common.network
+package com.example.data.model
 
-import javax.inject.Qualifier
-import kotlin.annotation.AnnotationRetention.RUNTIME
+import com.example.database.model.TopicEntity
+import com.example.network.model.NetworkTopic
 
-@Qualifier
-@Retention(RUNTIME)
-annotation class Dispatcher(val niaDispatcher: NiaDispatchers)
 
-enum class NiaDispatchers {//todo rename
-    Default,
-    IO,
-}
+fun NetworkTopic.asEntity() = TopicEntity(
+    id = id,
+    name = name,
+    shortDescription = shortDescription,
+    longDescription = longDescription,
+    url = url,
+    imageUrl = imageUrl,
+)

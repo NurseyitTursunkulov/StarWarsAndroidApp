@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 The Android Open Source Project
+ * Copyright 2023 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,18 @@
  * limitations under the License.
  */
 
-package com.example.common.network
+package com.example.data.model
 
-import javax.inject.Qualifier
-import kotlin.annotation.AnnotationRetention.RUNTIME
+import com.example.database.model.RecentSearchQueryEntity
+import kotlinx.datetime.Clock
+import kotlinx.datetime.Instant
 
-@Qualifier
-@Retention(RUNTIME)
-annotation class Dispatcher(val niaDispatcher: NiaDispatchers)
+data class RecentSearchQuery(
+    val query: String,
+    val queriedDate: Instant = Clock.System.now(),
+)
 
-enum class NiaDispatchers {//todo rename
-    Default,
-    IO,
-}
+fun RecentSearchQueryEntity.asExternalModel() = RecentSearchQuery(
+    query = query,
+    queriedDate = queriedDate,
+)

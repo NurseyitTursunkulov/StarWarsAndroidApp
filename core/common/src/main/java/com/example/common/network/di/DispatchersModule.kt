@@ -16,9 +16,9 @@
 
 package com.example.common.network.di
 
-import com.google.samples.apps.nowinandroid.core.network.Dispatcher
-import com.google.samples.apps.nowinandroid.core.network.NiaDispatchers.Default
-import com.google.samples.apps.nowinandroid.core.network.NiaDispatchers.IO
+import com.example.common.network.Dispatcher
+import com.example.common.network.NiaDispatchers.Default
+import com.example.common.network.NiaDispatchers.IO
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

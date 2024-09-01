@@ -18,8 +18,8 @@ package com.example.network.demo
 
 import com.example.network.JvmUnitTestDemoAssetManager
 import com.example.network.model.NetworkTopic
-import com.google.samples.apps.nowinandroid.core.network.Dispatcher
-import com.google.samples.apps.nowinandroid.core.network.NiaDispatchers.IO
+import com.example.common.network.Dispatcher
+import com.example.common.network.NiaDispatchers.IO
 import com.example.network.NiaNetworkDataSource
 import com.example.network.model.NetworkChangeList
 import com.example.network.model.NetworkNewsResource
