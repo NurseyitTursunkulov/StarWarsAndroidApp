@@ -16,6 +16,7 @@
 
 package com.example.interests
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -41,7 +42,7 @@ fun InterestsRoute(
     viewModel: InterestsViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-
+    Log.d("NURS","${uiState}")
     InterestsScreen(
         uiState = uiState,
         followTopic = viewModel::followTopic,

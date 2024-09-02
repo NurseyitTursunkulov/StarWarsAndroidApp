@@ -14,21 +14,27 @@
  * limitations under the License.
  */
 
-package com.example.data.di
+package com.example.work.di
 
-import com.example.data.util.NeverSyncingSyncManager
 import com.example.data.util.SyncManager
+import com.example.work.status.StubSyncSubscriber
+import com.example.work.status.SyncSubscriber
+import com.example.work.status.WorkManagerSyncManager
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
-//@Module
-//@InstallIn(SingletonComponent::class)
-//internal interface TestSyncModule {
-//    @Binds
-//    fun bindsSyncStatusMonitor(
-//        syncStatusMonitor: NeverSyncingSyncManager,
-//    ): SyncManager
-//
-//}
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class SyncModule {
+    @Binds
+    internal abstract fun bindsSyncStatusMonitor(
+        syncStatusMonitor: WorkManagerSyncManager,
+    ): SyncManager
+
+    @Binds
+    internal abstract fun bindsSyncSubscriber(
+        syncSubscriber: StubSyncSubscriber,
+    ): SyncSubscriber
+}

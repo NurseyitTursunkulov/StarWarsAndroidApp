@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 The Android Open Source Project
+ * Copyright 2023 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,11 @@
  * limitations under the License.
  */
 
-package com.example.data.di
+package com.example.work.status
 
-import com.example.data.util.NeverSyncingSyncManager
-import com.example.data.util.SyncManager
-import dagger.Binds
-import dagger.Module
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-
-//@Module
-//@InstallIn(SingletonComponent::class)
-//internal interface TestSyncModule {
-//    @Binds
-//    fun bindsSyncStatusMonitor(
-//        syncStatusMonitor: NeverSyncingSyncManager,
-//    ): SyncManager
-//
-//}
+/**
+ * Subscribes to backend requested synchronization
+ */
+interface SyncSubscriber {
+    suspend fun subscribe()
+}

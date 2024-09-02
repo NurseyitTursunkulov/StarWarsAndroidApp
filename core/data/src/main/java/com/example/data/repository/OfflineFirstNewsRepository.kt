@@ -16,6 +16,7 @@
 
 package com.example.data.repository
 
+import android.util.Log
 import com.example.data.Synchronizer
 import com.example.data.changeListSync
 import com.example.data.model.asEntity
@@ -64,6 +65,7 @@ internal class OfflineFirstNewsRepository @Inject constructor(
         .map { it.map(PopulatedNewsResource::asExternalModel) }
 
     override suspend fun syncWith(synchronizer: Synchronizer): Boolean {
+        Log.d("NURS","syncWith OfflineFirstNewsRepository")
         var isFirstSync = false
         return synchronizer.changeListSync(
             versionReader = ChangeListVersions::newsResourceVersion,

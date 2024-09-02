@@ -16,6 +16,7 @@
 
 package com.example.myapplication.ui
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
@@ -158,7 +159,10 @@ class NiaAppState(
             when (topLevelDestination) {
                 TopLevelDestination.FOR_YOU -> navController.navigateToForYou(topLevelNavOptions)
                 TopLevelDestination.BOOKMARKS -> navController.navigateToBookmarks(topLevelNavOptions)
-                TopLevelDestination.INTERESTS -> navController.navigateToInterests(null, topLevelNavOptions)
+                TopLevelDestination.INTERESTS -> {
+                    Log.d("NURS", "navigateToTopLevelDestination INTERESTS: ")
+                    navController.navigateToInterests(null, topLevelNavOptions)
+                }
             }
         }
     }

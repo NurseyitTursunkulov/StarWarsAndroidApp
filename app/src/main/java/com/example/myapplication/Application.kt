@@ -19,6 +19,7 @@ package com.example.myapplication
 import android.app.Application
 import coil.ImageLoader
 import coil.ImageLoaderFactory
+import com.example.work.initializers.Sync
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
@@ -31,13 +32,13 @@ class Application : Application(), ImageLoaderFactory {
     lateinit var imageLoader: dagger.Lazy<ImageLoader>
 
 
-//
-//    override fun onCreate() {
-//        super.onCreate()
-//        // Initialize Sync; the system responsible for keeping data in the app up to date.
-//        Sync.initialize(context = this)
+
+    override fun onCreate() {
+        super.onCreate()
+        // Initialize Sync; the system responsible for keeping data in the app up to date.
+        Sync.initialize(context = this)
 //        profileVerifierLogger()
-//    }
+    }
 
     override fun newImageLoader(): ImageLoader = imageLoader.get()
 }

@@ -25,11 +25,13 @@ import com.example.domain.TopicSortField
 import com.example.interests.navigation.TOPIC_ID_ARG
 import com.example.model.data.FollowableTopic
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -50,6 +52,18 @@ class InterestsViewModel @Inject constructor(
         started = SharingStarted.WhileSubscribed(5_000),
         initialValue = InterestsUiState.Loading,
     )
+
+    init {
+        viewModelScope.launch{
+            withContext(Dispatchers.IO){
+                getFollowableTopics.invoke().collect{
+                    if (it.isEmpty()){
+                        userDataRepository
+                    }
+                }
+            }
+        }
+    }
 
     fun followTopic(followedTopicId: String, followed: Boolean) {
         viewModelScope.launch {

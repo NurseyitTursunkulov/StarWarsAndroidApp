@@ -17,12 +17,7 @@
 package com.example.interests.navigation
 
 import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
-import androidx.navigation.NavType
-import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
-import com.example.interests.InterestsRoute
 
 const val TOPIC_ID_ARG = "topicId"
 const val INTERESTS_ROUTE_BASE = "interests_route"
@@ -37,19 +32,19 @@ fun NavController.navigateToInterests(topicId: String? = null, navOptions: NavOp
     navigate(route, navOptions)
 }
 
-fun NavGraphBuilder.interestsScreen(
-    onTopicClick: (String) -> Unit,
-) {
-    composable(
-        route = INTERESTS_ROUTE,
-        arguments = listOf(
-            navArgument(TOPIC_ID_ARG) {
-                defaultValue = null
-                nullable = true
-                type = NavType.StringType
-            },
-        ),
-    ) {
-        InterestsRoute(onTopicClick = onTopicClick)
-    }
-}
+//fun NavGraphBuilder.interestsScreen(
+//    onTopicClick: (String) -> Unit,
+//) {
+//    composable(
+//        route = INTERESTS_ROUTE,
+//        arguments = listOf(
+//            navArgument(TOPIC_ID_ARG) {
+//                defaultValue = null
+//                nullable = true
+//                type = NavType.StringType
+//            },
+//        ),
+//    ) {
+//        InterestsRoute(onTopicClick = onTopicClick)
+//    }
+//}

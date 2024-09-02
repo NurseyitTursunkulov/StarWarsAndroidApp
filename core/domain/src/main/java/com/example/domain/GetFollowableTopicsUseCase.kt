@@ -53,6 +53,10 @@ class GetFollowableTopicsUseCase @Inject constructor(
             else -> followedTopics
         }
     }
+
+    fun refresh(){
+
+    }
 }
 
 enum class TopicSortField {

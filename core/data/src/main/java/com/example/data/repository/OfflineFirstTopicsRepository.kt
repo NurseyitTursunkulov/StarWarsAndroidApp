@@ -16,6 +16,7 @@
 
 package com.example.data.repository
 
+import android.util.Log
 import com.example.data.Synchronizer
 import com.example.data.changeListSync
 import com.example.data.model.asEntity
@@ -24,6 +25,7 @@ import com.example.database.model.TopicEntity
 import com.example.database.model.asExternalModel
 import com.example.model.data.Topic
 import com.example.network.NiaNetworkDataSource
+import com.example.network.model.NetworkChangeList
 import com.example.network.model.NetworkTopic
 import com.google.samples.apps.nowinandroid.core.datastore.ChangeListVersions
 import kotlinx.coroutines.flow.Flow
@@ -46,10 +48,17 @@ internal class OfflineFirstTopicsRepository @Inject constructor(
     override fun getTopic(id: String): Flow<Topic> =
         topicDao.getTopicEntity(id).map { it.asExternalModel() }
 
-    override suspend fun syncWith(synchronizer: Synchronizer): Boolean =
-        synchronizer.changeListSync(
+    override suspend fun syncWith(synchronizer: Synchronizer): Boolean {
+        val changedIds = network.getTopicChangeList(after = 0).map(NetworkChangeList::id)
+        val networkTopics = network.getTopics(ids = changedIds)
+        Log.d("NURS","syncWith OfflineFirstTopicsRepository $changedIds $networkTopics")
+        topicDao.upsertTopics(
+            entities = networkTopics.map(NetworkTopic::asEntity),
+        )
+       return synchronizer.changeListSync(
             versionReader = ChangeListVersions::topicVersion,
             changeListFetcher = { currentVersion ->
+                Log.d("NURS","changeListFetcher OfflineFirstTopicsRepository")
                 network.getTopicChangeList(after = currentVersion)
             },
             versionUpdater = { latestVersion ->
@@ -57,10 +66,12 @@ internal class OfflineFirstTopicsRepository @Inject constructor(
             },
             modelDeleter = topicDao::deleteTopics,
             modelUpdater = { changedIds ->
+                Log.d("NURS","modelUpdater OfflineFirstTopicsRepository")
                 val networkTopics = network.getTopics(ids = changedIds)
                 topicDao.upsertTopics(
                     entities = networkTopics.map(NetworkTopic::asEntity),
                 )
             },
         )
+    }
 }
