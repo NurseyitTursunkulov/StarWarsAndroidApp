@@ -59,7 +59,17 @@ android {
 
 dependencies {
 
+    implementation(projects.feature.interests)
+    implementation(projects.feature.foryou)
+    implementation(projects.feature.bookmarks)
+    implementation(projects.feature.topic)
+    implementation(projects.feature.search)
+    implementation(projects.feature.settings)
+
     implementation(projects.core.common)
+    implementation(projects.core.ui)
+    implementation(projects.core.data)
+    implementation(projects.core.model)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

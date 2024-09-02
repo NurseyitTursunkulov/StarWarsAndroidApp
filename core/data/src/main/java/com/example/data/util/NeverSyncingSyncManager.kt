@@ -1,11 +1,11 @@
 /*
- * Copyright (C) 2022 The Android Open Source Project
+ * Copyright 2022 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-syntax = "proto3";
+package com.example.data.util
 
-option java_package = "com.example.datastore_proto";
-option java_multiple_files = true;
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
+import javax.inject.Inject
 
-enum DarkThemeConfigProto {
-  DARK_THEME_CONFIG_UNSPECIFIED = 0;
-  DARK_THEME_CONFIG_FOLLOW_SYSTEM = 1;
-  DARK_THEME_CONFIG_LIGHT = 2;
-  DARK_THEME_CONFIG_DARK = 3;
+internal class NeverSyncingSyncManager @Inject constructor() : SyncManager {
+    override val isSyncing: Flow<Boolean> = flowOf(false)
+    override fun requestSync() = Unit
 }

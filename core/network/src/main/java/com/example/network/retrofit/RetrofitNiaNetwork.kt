@@ -57,7 +57,7 @@ private interface RetrofitNiaNetworkApi {
     ): List<NetworkChangeList>
 }
 
-private const val NIA_BASE_URL = "BuildConfig.BACKEND_URL"
+private const val NIA_BASE_URL = "https://android-kotlin-fun-mars-server.appspot.com/"
 
 /**
  * Wrapper for data provided from the [NIA_BASE_URL]

@@ -25,11 +25,19 @@ import javax.inject.Inject
 /**
  * [Application] class for NiA
  */
-//@HiltAndroidApp
-class Application : Application() {
-//    @Inject
-//    lateinit var imageLoader: dagger.Lazy<ImageLoader>
-//    //todo add synchronization
+@HiltAndroidApp
+class Application : Application(), ImageLoaderFactory {
+    @Inject
+    lateinit var imageLoader: dagger.Lazy<ImageLoader>
+
+
 //
-//    override fun newImageLoader(): ImageLoader = imageLoader.get()
+//    override fun onCreate() {
+//        super.onCreate()
+//        // Initialize Sync; the system responsible for keeping data in the app up to date.
+//        Sync.initialize(context = this)
+//        profileVerifierLogger()
+//    }
+
+    override fun newImageLoader(): ImageLoader = imageLoader.get()
 }

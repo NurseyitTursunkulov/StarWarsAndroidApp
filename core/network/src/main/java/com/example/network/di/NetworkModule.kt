@@ -37,6 +37,13 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 internal object NetworkModule {
 
+//    @Provides
+//    @Singleton
+//    fun binds( networkJson: Json,
+//               okhttpCallFactory: dagger.Lazy<Call.Factory>,): NiaNetworkDataSource{
+//        return RetrofitNiaNetwork(networkJson,okhttpCallFactory)
+//    }
+
     @Provides
     @Singleton
     fun providesNetworkJson(): Json = Json {

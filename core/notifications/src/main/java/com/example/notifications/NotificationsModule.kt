@@ -1,11 +1,11 @@
 /*
- * Copyright (C) 2022 The Android Open Source Project
+ * Copyright 2023 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,13 +14,18 @@
  * limitations under the License.
  */
 
-syntax = "proto3";
+package com.example.notifications
 
-option java_package = "com.example.datastore_proto";
-option java_multiple_files = true;
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-enum ThemeBrandProto {
-  THEME_BRAND_UNSPECIFIED = 0;
-  THEME_BRAND_DEFAULT = 1;
-  THEME_BRAND_ANDROID = 2;
+@Module
+@InstallIn(SingletonComponent::class)
+internal interface NotificationsModule {
+    @Binds
+     fun bindNotifier(
+        notifier: SystemTrayNotifier,
+    ): Notifier
 }
