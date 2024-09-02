@@ -16,11 +16,9 @@
 
 package com.example.database
 
-import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.database.DatabaseMigrations
 import com.example.database.dao.NewsResourceDao
 import com.example.database.dao.NewsResourceFtsDao
 import com.example.database.dao.RecentSearchQueryDao
@@ -44,21 +42,6 @@ import com.example.database.util.InstantConverter
         RecentSearchQueryEntity::class,
     ],
     version = 14,
-    autoMigrations = [
-        AutoMigration(from = 1, to = 2),
-        AutoMigration(from = 2, to = 3, spec = DatabaseMigrations.Schema2to3::class),
-        AutoMigration(from = 3, to = 4),
-        AutoMigration(from = 4, to = 5),
-        AutoMigration(from = 5, to = 6),
-        AutoMigration(from = 6, to = 7),
-        AutoMigration(from = 7, to = 8),
-        AutoMigration(from = 8, to = 9),
-        AutoMigration(from = 9, to = 10),
-        AutoMigration(from = 10, to = 11, spec = DatabaseMigrations.Schema10to11::class),
-        AutoMigration(from = 11, to = 12, spec = DatabaseMigrations.Schema11to12::class),
-        AutoMigration(from = 12, to = 13),
-        AutoMigration(from = 13, to = 14),
-    ],
     exportSchema = true,
 )
 @TypeConverters(
