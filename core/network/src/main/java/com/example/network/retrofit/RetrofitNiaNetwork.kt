@@ -17,10 +17,15 @@
 package com.example.network.retrofit
 
 import androidx.tracing.trace
+import com.example.network.NetworkDataSource
 import com.example.network.NiaNetworkDataSource
+import com.example.network.model.FilmDTO
+import com.example.network.model.FilmResponse
 import com.example.network.model.NetworkChangeList
 import com.example.network.model.NetworkNewsResource
 import com.example.network.model.NetworkTopic
+import com.example.network.model.PeopleResponse
+import com.example.network.model.PersonDTO
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -57,7 +62,18 @@ private interface RetrofitNiaNetworkApi {
     ): List<NetworkChangeList>
 }
 
-private const val NIA_BASE_URL = "https://android-kotlin-fun-mars-server.appspot.com/"
+const val FILMS = "films/"
+const val PEOPLE = "people/"
+
+private interface NetworkApi {
+    @GET(FILMS)
+    suspend fun getAllFilms(): FilmResponse
+
+    @GET(PEOPLE)
+    suspend fun getAllPeople(): PeopleResponse
+}
+
+private const val NIA_BASE_URL = "https://swapi.dev/api/"
 
 /**
  * Wrapper for data provided from the [NIA_BASE_URL]
@@ -74,7 +90,7 @@ private data class NetworkResponse<T>(
 internal class RetrofitNiaNetwork @Inject constructor(
     networkJson: Json,
     okhttpCallFactory: dagger.Lazy<Call.Factory>,
-) : NiaNetworkDataSource {
+) : NetworkDataSource {
 
     private val networkApi = trace("RetrofitNiaNetwork") {
         Retrofit.Builder()
@@ -86,18 +102,26 @@ internal class RetrofitNiaNetwork @Inject constructor(
                 networkJson.asConverterFactory("application/json".toMediaType()),
             )
             .build()
-            .create(RetrofitNiaNetworkApi::class.java)
+            .create(NetworkApi::class.java)
     }
 
-    override suspend fun getTopics(ids: List<String>?): List<NetworkTopic> =
-        networkApi.getTopics(ids = ids).data
+//    override suspend fun getTopics(ids: List<String>?): List<NetworkTopic> =
+//        networkApi.getTopics(ids = ids).data
+//
+//    override suspend fun getNewsResources(ids: List<String>?): List<NetworkNewsResource> =
+//        networkApi.getNewsResources(ids = ids).data
+//
+//    override suspend fun getTopicChangeList(after: Int?): List<NetworkChangeList> =
+//        networkApi.getTopicChangeList(after = after)
+//
+//    override suspend fun getNewsResourceChangeList(after: Int?): List<NetworkChangeList> =
+//        networkApi.getNewsResourcesChangeList(after = after)
 
-    override suspend fun getNewsResources(ids: List<String>?): List<NetworkNewsResource> =
-        networkApi.getNewsResources(ids = ids).data
+    override suspend fun getPeople(): List<PersonDTO> {
+        return networkApi.getAllPeople().results
+    }
 
-    override suspend fun getTopicChangeList(after: Int?): List<NetworkChangeList> =
-        networkApi.getTopicChangeList(after = after)
-
-    override suspend fun getNewsResourceChangeList(after: Int?): List<NetworkChangeList> =
-        networkApi.getNewsResourcesChangeList(after = after)
+    override suspend fun getFilms(): List<FilmDTO> {
+        return networkApi.getAllFilms().results
+    }
 }

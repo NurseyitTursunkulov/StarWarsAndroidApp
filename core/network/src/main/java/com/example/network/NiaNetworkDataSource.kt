@@ -16,9 +16,11 @@
 
 package com.example.network
 
+import com.example.network.model.FilmDTO
 import com.example.network.model.NetworkChangeList
 import com.example.network.model.NetworkNewsResource
 import com.example.network.model.NetworkTopic
+import com.example.network.model.PersonDTO
 
 /**
  * Interface representing network calls to the NIA backend
@@ -31,4 +33,9 @@ interface NiaNetworkDataSource {
     suspend fun getTopicChangeList(after: Int? = null): List<NetworkChangeList>
 
     suspend fun getNewsResourceChangeList(after: Int? = null): List<NetworkChangeList>
+}
+
+interface NetworkDataSource{
+    suspend fun getPeople(): List<PersonDTO>
+    suspend fun getFilms():List<FilmDTO>
 }

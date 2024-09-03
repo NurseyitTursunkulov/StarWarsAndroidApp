@@ -24,6 +24,7 @@ import com.example.database.dao.TopicDao
 import com.example.database.model.TopicEntity
 import com.example.database.model.asExternalModel
 import com.example.model.data.Topic
+import com.example.network.NetworkDataSource
 import com.example.network.NiaNetworkDataSource
 import com.example.network.model.NetworkChangeList
 import com.example.network.model.NetworkTopic
@@ -39,6 +40,7 @@ import javax.inject.Inject
 internal class OfflineFirstTopicsRepository @Inject constructor(
     private val topicDao: TopicDao,
     private val network: NiaNetworkDataSource,
+    private val network2: NetworkDataSource,
 ) : TopicsRepository {
 
     override fun getTopics(): Flow<List<Topic>> =
@@ -51,7 +53,7 @@ internal class OfflineFirstTopicsRepository @Inject constructor(
     override suspend fun syncWith(synchronizer: Synchronizer): Boolean {
         val changedIds = network.getTopicChangeList(after = 0).map(NetworkChangeList::id)
         val networkTopics = network.getTopics(ids = changedIds)
-        Log.d("NURS","syncWith OfflineFirstTopicsRepository $changedIds $networkTopics")
+        Log.d("HADI","modelUpdater OfflineFirstTopicsRepository ${ network2.getPeople()}")
         topicDao.upsertTopics(
             entities = networkTopics.map(NetworkTopic::asEntity),
         )
@@ -66,11 +68,12 @@ internal class OfflineFirstTopicsRepository @Inject constructor(
             },
             modelDeleter = topicDao::deleteTopics,
             modelUpdater = { changedIds ->
-                Log.d("NURS","modelUpdater OfflineFirstTopicsRepository")
+
                 val networkTopics = network.getTopics(ids = changedIds)
                 topicDao.upsertTopics(
                     entities = networkTopics.map(NetworkTopic::asEntity),
                 )
+
             },
         )
     }

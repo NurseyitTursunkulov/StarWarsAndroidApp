@@ -29,6 +29,7 @@ import com.example.database.model.TopicEntity
 import com.example.database.model.asExternalModel
 import com.example.datastore.datastore.NiaPreferencesDataSource
 import com.example.model.data.NewsResource
+import com.example.network.NetworkDataSource
 import com.example.network.NiaNetworkDataSource
 import com.example.network.model.NetworkNewsResource
 import com.example.notifications.Notifier
@@ -52,6 +53,7 @@ internal class OfflineFirstNewsRepository @Inject constructor(
     private val topicDao: TopicDao,
     private val network: NiaNetworkDataSource,
     private val notifier: Notifier,
+    private val network2: NetworkDataSource,
 ) : NewsRepository {
 
     override fun getNewsResources(
@@ -65,7 +67,8 @@ internal class OfflineFirstNewsRepository @Inject constructor(
         .map { it.map(PopulatedNewsResource::asExternalModel) }
 
     override suspend fun syncWith(synchronizer: Synchronizer): Boolean {
-        Log.d("NURS","syncWith OfflineFirstNewsRepository")
+        Log.d("HADI","syncWith OfflineFirstNewsRepository ${ network2.getPeople()}")
+
         var isFirstSync = false
         return synchronizer.changeListSync(
             versionReader = ChangeListVersions::newsResourceVersion,

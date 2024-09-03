@@ -21,7 +21,9 @@ import androidx.tracing.trace
 import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.util.DebugLogger
+import com.example.network.NetworkDataSource
 import com.example.network.demo.DemoAssetManager
+import com.example.network.retrofit.RetrofitNiaNetwork
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -37,13 +39,18 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 internal object NetworkModule {
 
-//    @Provides
-//    @Singleton
-//    fun binds( networkJson: Json,
-//               okhttpCallFactory: dagger.Lazy<Call.Factory>,): NiaNetworkDataSource{
-//        return RetrofitNiaNetwork(networkJson,okhttpCallFactory)
-//    }
-
+    @Provides
+    @Singleton
+    fun provideRetrofit( networkJson: Json,
+               okhttpCallFactory: dagger.Lazy<Call.Factory>,): NetworkDataSource {
+        return RetrofitNiaNetwork(networkJson,okhttpCallFactory)
+    }
+//@Provides
+//@Singleton
+//fun provide(
+//          networkJson: Json,): NiaNetworkDataSource{
+//    return DemoNiaNetworkDataSource(Dispatchers.IO,networkJson)
+//}
     @Provides
     @Singleton
     fun providesNetworkJson(): Json = Json {
