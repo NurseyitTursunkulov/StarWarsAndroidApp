@@ -1,10 +1,13 @@
 package com.example.designsystem.icon
 
 
+import androidx.compose.material3.Icon
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.path
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 val Icon_Dark_Vaider: ImageVector
@@ -283,3 +286,14 @@ val Icon_Dark_Vaider: ImageVector
 
 @Suppress("ObjectPropertyName")
 private var _DarkVeider: ImageVector? = null
+// ... your existing code ...
+
+@Preview(showBackground = true, backgroundColor = 0xFFFFFF)
+@Composable
+fun DarkVeiderPreview() {
+    Icon(
+        imageVector = Icon_Dark_Vaider,
+        contentDescription = "Dark Veider Icon",
+        tint =Color.Black // You can set a tint for preview if needed
+    )
+}

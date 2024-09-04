@@ -21,7 +21,6 @@ import com.example.designsystem.icon.Icon_Dark_Vaider
 import com.example.designsystem.icon.Icon_Light_Vader
 import com.example.designsystem.icon.NiaIcons
 import com.example.myapplication.R
-import com.example.bookmarks.R as bookmarksR
 import com.example.foryou.R as forYouR
 import com.example.search.R as searchR
 
@@ -41,12 +40,6 @@ enum class TopLevelDestination(
         unselectedIcon = Icon_Light_Vader,
         iconTextId = forYouR.string.actors_title,
         titleTextId = R.string.app_name,
-    ),
-    BOOKMARKS(
-        selectedIcon = NiaIcons.Bookmarks,
-        unselectedIcon = NiaIcons.BookmarksBorder,
-        iconTextId = bookmarksR.string.feature_bookmarks_title,
-        titleTextId = bookmarksR.string.feature_bookmarks_title,
     ),
     INTERESTS(
         selectedIcon = NiaIcons.Grid3x3,

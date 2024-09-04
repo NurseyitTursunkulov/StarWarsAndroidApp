@@ -22,7 +22,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.data.repository.UserDataRepository
 import com.example.domain.GetFollowableTopicsUseCase
 import com.example.domain.TopicSortField
-import com.example.interests.navigation.TOPIC_ID_ARG
 import com.example.model.data.FollowableTopic
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -41,7 +40,7 @@ class InterestsViewModel @Inject constructor(
     getFollowableTopics: GetFollowableTopicsUseCase,
 ) : ViewModel() {
 
-    val selectedTopicId: StateFlow<String?> = savedStateHandle.getStateFlow(TOPIC_ID_ARG, null)
+    val selectedTopicId: StateFlow<String?> = savedStateHandle.getStateFlow("TOPIC_ID_ARG", null)
 
     val uiState: StateFlow<InterestsUiState> = combine(
         selectedTopicId,
@@ -72,7 +71,7 @@ class InterestsViewModel @Inject constructor(
     }
 
     fun onTopicClick(topicId: String?) {
-        savedStateHandle[TOPIC_ID_ARG] = topicId
+        savedStateHandle["TOPIC_ID_ARG"] = topicId
     }
 }
 

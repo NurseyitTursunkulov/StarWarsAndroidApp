@@ -19,13 +19,11 @@ package com.example.myapplication.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
-import com.example.bookmarks.navigation.bookmarksScreen
 import com.example.foryou.navigation.ACTORS_ROUTE
 import com.example.foryou.navigation.forYouScreen
-import com.example.interests.navigation.navigateToInterests
+import com.example.interests.navigation.interestsScreen
 import com.example.myapplication.ui.NiaAppState
-import com.example.myapplication.ui.interests2pane.interestsListDetailScreen
-import com.example.search.navigation.searchScreen
+//import com.example.myapplication.ui.interests2pane.interestsListDetailScreen
 
 /**
  * Top-level navigation graph. Navigation is organized as explained at
@@ -47,16 +45,7 @@ fun NiaNavHost(
         startDestination = startDestination,
         modifier = modifier,
     ) {
-        forYouScreen(onTopicClick = navController::navigateToInterests)
-        bookmarksScreen(
-            onTopicClick = {/**navController::navigateToInterests**/},
-            onShowSnackbar = onShowSnackbar,
-        )
-        searchScreen(
-            onBackClick = navController::popBackStack,
-            onInterestsClick = { appState.navigateToTopLevelDestination(TopLevelDestination.INTERESTS) },
-            onTopicClick = navController::navigateToInterests,
-        )
-        interestsListDetailScreen()
+        forYouScreen()
+        interestsScreen()
     }
 }

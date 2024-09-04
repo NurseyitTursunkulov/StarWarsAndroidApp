@@ -29,14 +29,12 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import androidx.tracing.trace
-import com.example.bookmarks.navigation.BOOKMARKS_ROUTE
-import com.example.bookmarks.navigation.navigateToBookmarks
 import com.example.data.repository.UserNewsResourceRepository
 import com.example.data.util.NetworkMonitor
 import com.example.data.util.TimeZoneMonitor
 import com.example.foryou.navigation.ACTORS_ROUTE
 import com.example.foryou.navigation.navigateToForYou
-import com.example.interests.navigation.INTERESTS_ROUTE
+import com.example.interests.navigation.INTERESTS_ROUTE_BASE
 import com.example.interests.navigation.navigateToInterests
 import com.example.myapplication.navigation.TopLevelDestination
 import com.example.search.navigation.navigateToSearch
@@ -90,8 +88,7 @@ class NiaAppState(
     val currentTopLevelDestination: TopLevelDestination?
         @Composable get() = when (currentDestination?.route) {
             ACTORS_ROUTE -> TopLevelDestination.ACTORS
-            BOOKMARKS_ROUTE -> TopLevelDestination.BOOKMARKS
-            INTERESTS_ROUTE -> TopLevelDestination.INTERESTS
+            INTERESTS_ROUTE_BASE -> TopLevelDestination.INTERESTS
             else -> null
         }
 
@@ -117,7 +114,6 @@ class NiaAppState(
             .combine(userNewsResourceRepository.observeAllBookmarked()) { forYouNewsResources, bookmarkedNewsResources ->
                 setOfNotNull(
                     TopLevelDestination.ACTORS.takeIf { forYouNewsResources.any { !it.hasBeenViewed } },
-                    TopLevelDestination.BOOKMARKS.takeIf { bookmarkedNewsResources.any { !it.hasBeenViewed } },
                 )
             }
             .stateIn(
@@ -158,10 +154,9 @@ class NiaAppState(
 
             when (topLevelDestination) {
                 TopLevelDestination.ACTORS -> navController.navigateToForYou(topLevelNavOptions)
-                TopLevelDestination.BOOKMARKS -> navController.navigateToBookmarks(topLevelNavOptions)
                 TopLevelDestination.INTERESTS -> {
                     Log.d("NURS", "navigateToTopLevelDestination INTERESTS: ")
-                    navController.navigateToInterests(null, topLevelNavOptions)
+                    navController.navigateToInterests(topLevelNavOptions)
                 }
             }
         }
