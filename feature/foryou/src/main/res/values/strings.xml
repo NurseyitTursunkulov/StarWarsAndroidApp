@@ -14,8 +14,9 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="feature_foryou_title">For you</string>
+    <string name="actors_title" tools:ignore="ResourceName">Actors</string>
     <string name="feature_foryou_done">Done</string>
     <string name="feature_foryou_loading">Loading for you…</string>
     <string name="feature_foryou_navigate_up">Navigate up</string>

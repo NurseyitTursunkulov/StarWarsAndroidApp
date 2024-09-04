@@ -20,7 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import com.example.bookmarks.navigation.bookmarksScreen
-import com.example.foryou.navigation.FOR_YOU_ROUTE
+import com.example.foryou.navigation.ACTORS_ROUTE
 import com.example.foryou.navigation.forYouScreen
 import com.example.interests.navigation.navigateToInterests
 import com.example.myapplication.ui.NiaAppState
@@ -39,7 +39,7 @@ fun NiaNavHost(
     appState: NiaAppState,
     onShowSnackbar: suspend (String, String?) -> Boolean,
     modifier: Modifier = Modifier,
-    startDestination: String = FOR_YOU_ROUTE,
+    startDestination: String = ACTORS_ROUTE,
 ) {
     val navController = appState.navController
     NavHost(

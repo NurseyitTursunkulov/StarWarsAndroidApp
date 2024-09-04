@@ -17,11 +17,12 @@
 package com.example.myapplication.navigation
 
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.example.designsystem.icon.Icon_Dark_Vaider
+import com.example.designsystem.icon.Icon_Light_Vader
 import com.example.designsystem.icon.NiaIcons
 import com.example.myapplication.R
 import com.example.bookmarks.R as bookmarksR
 import com.example.foryou.R as forYouR
-import com.example.interests.R as interestsR
 import com.example.search.R as searchR
 
 /**
@@ -35,10 +36,10 @@ enum class TopLevelDestination(
     val iconTextId: Int,
     val titleTextId: Int,
 ) {
-    FOR_YOU(
-        selectedIcon = NiaIcons.Upcoming,
-        unselectedIcon = NiaIcons.UpcomingBorder,
-        iconTextId = forYouR.string.feature_foryou_title,
+    ACTORS(
+        selectedIcon = Icon_Dark_Vaider,
+        unselectedIcon = Icon_Light_Vader,
+        iconTextId = forYouR.string.actors_title,
         titleTextId = R.string.app_name,
     ),
     BOOKMARKS(

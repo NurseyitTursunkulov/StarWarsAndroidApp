@@ -64,7 +64,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
@@ -81,7 +80,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.tracing.trace
 import com.example.designsystem.component.DynamicAsyncImage
 import com.example.designsystem.component.NiaButton
@@ -110,24 +108,24 @@ internal fun ForYouRoute(
     modifier: Modifier = Modifier,
     viewModel: ForYouViewModel = hiltViewModel(),
 ) {
-    val onboardingUiState by viewModel.onboardingUiState.collectAsStateWithLifecycle()
-    val feedState by viewModel.feedState.collectAsStateWithLifecycle()
-    val isSyncing by viewModel.isSyncing.collectAsStateWithLifecycle()
-    val deepLinkedUserNewsResource by viewModel.deepLinkedNewsResource.collectAsStateWithLifecycle()
-
-    ForYouScreen(
-        isSyncing = isSyncing,
-        onboardingUiState = onboardingUiState,
-        feedState = feedState,
-        deepLinkedUserNewsResource = deepLinkedUserNewsResource,
-        onTopicCheckedChanged = viewModel::updateTopicSelection,
-        onDeepLinkOpened = viewModel::onDeepLinkOpened,
-        onTopicClick = onTopicClick,
-        saveFollowedTopics = viewModel::dismissOnboarding,
-        onNewsResourcesCheckedChanged = viewModel::updateNewsResourceSaved,
-        onNewsResourceViewed = { viewModel.setNewsResourceViewed(it, true) },
-        modifier = modifier,
-    )
+//    val onboardingUiState by viewModel.onboardingUiState.collectAsStateWithLifecycle()
+//    val feedState by viewModel.feedState.collectAsStateWithLifecycle()
+//    val isSyncing by viewModel.isSyncing.collectAsStateWithLifecycle()
+//    val deepLinkedUserNewsResource by viewModel.deepLinkedNewsResource.collectAsStateWithLifecycle()
+//
+//    ForYouScreen(
+//        isSyncing = isSyncing,
+//        onboardingUiState = onboardingUiState,
+//        feedState = feedState,
+//        deepLinkedUserNewsResource = deepLinkedUserNewsResource,
+//        onTopicCheckedChanged = viewModel::updateTopicSelection,
+//        onDeepLinkOpened = viewModel::onDeepLinkOpened,
+//        onTopicClick = onTopicClick,
+//        saveFollowedTopics = viewModel::dismissOnboarding,
+//        onNewsResourcesCheckedChanged = viewModel::updateNewsResourceSaved,
+//        onNewsResourceViewed = { viewModel.setNewsResourceViewed(it, true) },
+//        modifier = modifier,
+//    )
 }
 
 @Composable

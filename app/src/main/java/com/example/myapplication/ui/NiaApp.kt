@@ -26,6 +26,7 @@ import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -64,16 +65,12 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import com.example.designsystem.component.NiaBackground
 import com.example.designsystem.component.NiaGradientBackground
 import com.example.designsystem.component.NiaNavigationSuiteScaffold
-import com.example.designsystem.component.NiaTopAppBar
-import com.example.designsystem.icon.NiaIcons
 import com.example.designsystem.theme.GradientColors
 import com.example.designsystem.theme.LocalGradientColors
 import com.example.myapplication.R
 import com.example.myapplication.navigation.NiaNavHost
 import com.example.myapplication.navigation.TopLevelDestination
 import com.example.settings.SettingsDialog
-
-import com.example.settings.R as settingsR
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
@@ -83,7 +80,7 @@ fun NiaApp(
     windowAdaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfo(),
 ) {
     val shouldShowGradientBackground =
-        appState.currentTopLevelDestination == TopLevelDestination.FOR_YOU
+        appState.currentTopLevelDestination == TopLevelDestination.ACTORS
     var showSettingsDialog by rememberSaveable { mutableStateOf(false) }
 
     NiaBackground(modifier = modifier) {
@@ -199,36 +196,18 @@ internal fun NiaApp(
             ) {
                 // Show the top app bar on top level destinations.
                 val destination = appState.currentTopLevelDestination
-                val shouldShowTopAppBar = destination != null
                 if (destination != null) {
-                    NiaTopAppBar(
-                        titleRes = destination.titleTextId,
-                        navigationIcon = NiaIcons.Search,
-                        navigationIconContentDescription = stringResource(
-                            id = settingsR.string.feature_settings_top_app_bar_navigation_icon_description,
-                        ),
-                        actionIcon = NiaIcons.Settings,
-                        actionIconContentDescription = stringResource(
-                            id = settingsR.string.feature_settings_top_app_bar_action_icon_description,
-                        ),
+                    CenterAlignedTopAppBar(
+                        title = { Text(text = stringResource(id = destination.titleTextId)) },
+
                         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                             containerColor = Color.Transparent,
                         ),
-                        onActionClick = { onTopAppBarActionClick() },
-                        onNavigationClick = { appState.navigateToSearch() },
+                        modifier = modifier.testTag("niaTopAppBar"),
                     )
                 }
 
-                Box(
-                    // Workaround for https://issuetracker.google.com/338478720
-                    modifier = Modifier.consumeWindowInsets(
-                        if (shouldShowTopAppBar) {
-                            WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
-                        } else {
-                            WindowInsets(0, 0, 0, 0)
-                        },
-                    ),
-                ) {
+                Box() {
                     NiaNavHost(
                         appState = appState,
                         onShowSnackbar = { message, action ->
@@ -240,9 +219,6 @@ internal fun NiaApp(
                         },
                     )
                 }
-
-                // TODO: We may want to add padding or spacer when the snackbar is shown so that
-                //  content doesn't display behind it.
             }
         }
     }

@@ -34,7 +34,7 @@ import com.example.bookmarks.navigation.navigateToBookmarks
 import com.example.data.repository.UserNewsResourceRepository
 import com.example.data.util.NetworkMonitor
 import com.example.data.util.TimeZoneMonitor
-import com.example.foryou.navigation.FOR_YOU_ROUTE
+import com.example.foryou.navigation.ACTORS_ROUTE
 import com.example.foryou.navigation.navigateToForYou
 import com.example.interests.navigation.INTERESTS_ROUTE
 import com.example.interests.navigation.navigateToInterests
@@ -89,7 +89,7 @@ class NiaAppState(
 
     val currentTopLevelDestination: TopLevelDestination?
         @Composable get() = when (currentDestination?.route) {
-            FOR_YOU_ROUTE -> TopLevelDestination.FOR_YOU
+            ACTORS_ROUTE -> TopLevelDestination.ACTORS
             BOOKMARKS_ROUTE -> TopLevelDestination.BOOKMARKS
             INTERESTS_ROUTE -> TopLevelDestination.INTERESTS
             else -> null
@@ -116,7 +116,7 @@ class NiaAppState(
         userNewsResourceRepository.observeAllForFollowedTopics()
             .combine(userNewsResourceRepository.observeAllBookmarked()) { forYouNewsResources, bookmarkedNewsResources ->
                 setOfNotNull(
-                    TopLevelDestination.FOR_YOU.takeIf { forYouNewsResources.any { !it.hasBeenViewed } },
+                    TopLevelDestination.ACTORS.takeIf { forYouNewsResources.any { !it.hasBeenViewed } },
                     TopLevelDestination.BOOKMARKS.takeIf { bookmarkedNewsResources.any { !it.hasBeenViewed } },
                 )
             }
@@ -157,7 +157,7 @@ class NiaAppState(
             }
 
             when (topLevelDestination) {
-                TopLevelDestination.FOR_YOU -> navController.navigateToForYou(topLevelNavOptions)
+                TopLevelDestination.ACTORS -> navController.navigateToForYou(topLevelNavOptions)
                 TopLevelDestination.BOOKMARKS -> navController.navigateToBookmarks(topLevelNavOptions)
                 TopLevelDestination.INTERESTS -> {
                     Log.d("NURS", "navigateToTopLevelDestination INTERESTS: ")
