@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.interests"
+    namespace = "com.example.films"
 }
 
 dependencies {

@@ -16,10 +16,10 @@
 
 package com.example.myapplication.ui.interests2pane
 
-//import com.google.samples.apps.nowinandroid.feature.interests.navigation.TOPIC_ID_ARG
+//import com.google.samples.apps.nowinandroid.feature.films.navigation.TOPIC_ID_ARG
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-//import com.example.interests.navigation.TOPIC_ID_ARG
+//import com.example.films.navigation.TOPIC_ID_ARG
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject

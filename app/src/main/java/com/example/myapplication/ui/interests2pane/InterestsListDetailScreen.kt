@@ -44,9 +44,9 @@
 //import androidx.navigation.compose.composable
 //import androidx.navigation.compose.rememberNavController
 //import androidx.navigation.navArgument
-//import com.example.interests.InterestsRoute
-//import com.example.interests.navigation.INTERESTS_ROUTE
-//import com.example.interests.navigation.TOPIC_ID_ARG
+//import com.example.films.InterestsRoute
+//import com.example.films.navigation.INTERESTS_ROUTE
+//import com.example.films.navigation.TOPIC_ID_ARG
 //import com.example.topic.TopicDetailPlaceholder
 //import com.example.topic.navigation.TOPIC_ROUTE
 //import com.example.topic.navigation.createTopicRoute

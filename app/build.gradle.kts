@@ -61,10 +61,6 @@ dependencies {
 
     implementation(projects.feature.films)
     implementation(projects.feature.actors)
-    implementation(projects.feature.bookmarks)
-    implementation(projects.feature.topic)
-    implementation(projects.feature.search)
-    implementation(projects.feature.settings)
 
     implementation(projects.core.common)
     implementation(projects.core.ui)

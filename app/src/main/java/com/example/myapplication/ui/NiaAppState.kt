@@ -29,15 +29,14 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import androidx.tracing.trace
+import com.example.actors.navigation.ACTORS_ROUTE
+import com.example.actors.navigation.navigateToForYou
 import com.example.data.repository.UserNewsResourceRepository
 import com.example.data.util.NetworkMonitor
 import com.example.data.util.TimeZoneMonitor
-import com.example.foryou.navigation.ACTORS_ROUTE
-import com.example.foryou.navigation.navigateToForYou
-import com.example.interests.navigation.INTERESTS_ROUTE_BASE
-import com.example.interests.navigation.navigateToInterests
+import com.example.films.navigation.INTERESTS_ROUTE_BASE
+import com.example.films.navigation.navigateToInterests
 import com.example.myapplication.navigation.TopLevelDestination
-import com.example.search.navigation.navigateToSearch
 import com.example.ui.TrackDisposableJank
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
@@ -162,7 +161,6 @@ class NiaAppState(
         }
     }
 
-    fun navigateToSearch() = navController.navigateToSearch()
 }
 
 /**

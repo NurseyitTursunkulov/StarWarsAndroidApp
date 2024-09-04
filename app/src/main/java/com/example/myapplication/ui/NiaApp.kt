@@ -70,7 +70,6 @@ import com.example.designsystem.theme.LocalGradientColors
 import com.example.myapplication.R
 import com.example.myapplication.navigation.NiaNavHost
 import com.example.myapplication.navigation.TopLevelDestination
-import com.example.settings.SettingsDialog
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
@@ -136,12 +135,6 @@ internal fun NiaApp(
     val unreadDestinations by appState.topLevelDestinationsWithUnreadResources
         .collectAsStateWithLifecycle()
     val currentDestination = appState.currentDestination
-
-    if (showSettingsDialog) {
-        SettingsDialog(
-            onDismiss = { onSettingsDismissed() },
-        )
-    }
 
     NiaNavigationSuiteScaffold(
         navigationSuiteItems = {

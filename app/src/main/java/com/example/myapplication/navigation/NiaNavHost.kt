@@ -19,9 +19,9 @@ package com.example.myapplication.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
-import com.example.foryou.navigation.ACTORS_ROUTE
-import com.example.foryou.navigation.forYouScreen
-import com.example.interests.navigation.interestsScreen
+import com.example.actors.navigation.ACTORS_ROUTE
+import com.example.actors.navigation.forYouScreen
+import com.example.films.navigation.interestsScreen
 import com.example.myapplication.ui.NiaAppState
 //import com.example.myapplication.ui.interests2pane.interestsListDetailScreen
 
