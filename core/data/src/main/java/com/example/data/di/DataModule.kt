@@ -20,9 +20,11 @@ import com.example.data.repository.DefaultRecentSearchRepository
 import com.example.data.repository.DefaultSearchContentsRepository
 import com.example.data.repository.NewsRepository
 import com.example.data.repository.OfflineFirstNewsRepository
+import com.example.data.repository.OfflineFirstStarWarsRepository
 import com.example.data.repository.OfflineFirstTopicsRepository
 import com.example.data.repository.OfflineFirstUserDataRepository
 import com.example.data.repository.RecentSearchRepository
+import com.example.data.repository.StarWarsRepository
 import com.example.data.repository.SearchContentsRepository
 import com.example.data.repository.TopicsRepository
 import com.example.data.repository.UserDataRepository
@@ -38,6 +40,9 @@ import dagger.hilt.components.SingletonComponent
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class DataModule {
+
+    @Binds
+    internal abstract fun bindRepository(offlineFirstRepository: OfflineFirstStarWarsRepository):StarWarsRepository
 
     @Binds
     internal abstract fun bindsTopicRepository(

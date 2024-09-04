@@ -31,6 +31,7 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -42,12 +43,15 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.example.designsystem.theme.NiaTheme
+import com.example.ui.R
 import kotlinx.coroutines.launch
 
 @Composable
@@ -105,12 +109,22 @@ fun NiaLoadingWheel(
             label = "wheel color animation",
         )
     }
+    Icon(
+        imageVector =  ImageVector.vectorResource(R.drawable.dark_veider),
+        contentDescription = null,
+        modifier = modifier
+            .size(4.dp)
+            .padding(18.dp)
+            .graphicsLayer { rotationZ = rotationAnim }
+            .semantics { contentDescription = contentDesc }
+            .testTag("loadingWheel")
+    )
 
     // Draws out the LoadingWheel Canvas composable and sets the animations
     Canvas(
         modifier = modifier
             .size(48.dp)
-            .padding(8.dp)
+            .padding(6.dp)
             .graphicsLayer { rotationZ = rotationAnim }
             .semantics { contentDescription = contentDesc }
             .testTag("loadingWheel"),

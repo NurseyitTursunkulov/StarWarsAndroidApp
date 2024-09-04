@@ -67,7 +67,7 @@ internal class OfflineFirstNewsRepository @Inject constructor(
         .map { it.map(PopulatedNewsResource::asExternalModel) }
 
     override suspend fun syncWith(synchronizer: Synchronizer): Boolean {
-        Log.d("HADI","syncWith OfflineFirstNewsRepository ${ network2.getPeople()}")
+        Log.d("HADI","syncWith OfflineFirstNewsRepository ${ network2.getActors()}")
 
         var isFirstSync = false
         return synchronizer.changeListSync(

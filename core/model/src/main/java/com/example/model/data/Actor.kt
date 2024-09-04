@@ -1,6 +1,6 @@
 package com.example.model.data
 
-data class Person(
+data class Actor(
     val name: String,
     val height: String,
     val mass: String,

@@ -102,3 +102,9 @@ suspend fun Synchronizer.changeListSync(
         versionUpdater(latestVersion)
     }
 }.isSuccess
+
+suspend fun Synchronizer.changeListSync(
+    modelUpdater: suspend () -> Unit,
+) = suspendRunCatching {
+    modelUpdater()
+}.isSuccess

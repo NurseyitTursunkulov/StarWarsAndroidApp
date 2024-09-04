@@ -16,7 +16,10 @@
 
 package com.example.database.di
 
+import com.example.database.Database
 import com.example.database.NiaDatabase
+import com.example.database.dao.ActorsDao
+import com.example.database.dao.FilmsDao
 import com.example.database.dao.NewsResourceDao
 import com.example.database.dao.NewsResourceFtsDao
 import com.example.database.dao.RecentSearchQueryDao
@@ -30,6 +33,17 @@ import dagger.hilt.components.SingletonComponent
 @Module
 @InstallIn(SingletonComponent::class)
 internal object DaosModule {
+    @Provides
+    fun provideActorsDao(
+        database: Database
+    ): ActorsDao = database.actorsDao()
+
+    @Provides
+    fun provideFilmsDao(
+        database: Database
+    ) : FilmsDao = database.filmsDao()
+
+
     @Provides
     fun providesTopicsDao(
         database: NiaDatabase,

@@ -7,11 +7,11 @@ data class PeopleResponse(
     val count: Int,
     val next: String?,
     val previous: String?,
-    val results: List<PersonDTO>
+    val results: List<ActorDTO>
 )
 
 @Serializable
-data class PersonDTO(
+data class ActorDTO(
     val name: String,
     val height: String,
     val mass: String,

@@ -18,6 +18,7 @@ package com.example.database.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.database.Database
 import com.example.database.NiaDatabase
 import dagger.Module
 import dagger.Provides
@@ -37,5 +38,15 @@ internal object DatabaseModule {
         context,
         NiaDatabase::class.java,
         "nia-database",
+    ).build()
+
+    @Provides
+    @Singleton
+    fun providesDatabase(
+        @ApplicationContext context: Context,
+    ): Database = Room.databaseBuilder(
+        context,
+        Database::class.java,
+        "star_wars_database",
     ).build()
 }

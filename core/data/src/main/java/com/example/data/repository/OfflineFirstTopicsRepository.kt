@@ -53,7 +53,7 @@ internal class OfflineFirstTopicsRepository @Inject constructor(
     override suspend fun syncWith(synchronizer: Synchronizer): Boolean {
         val changedIds = network.getTopicChangeList(after = 0).map(NetworkChangeList::id)
         val networkTopics = network.getTopics(ids = changedIds)
-        Log.d("HADI","modelUpdater OfflineFirstTopicsRepository ${ network2.getPeople()}")
+        Log.d("HADI","modelUpdater OfflineFirstTopicsRepository ${ network2.getActors()}")
         topicDao.upsertTopics(
             entities = networkTopics.map(NetworkTopic::asEntity),
         )

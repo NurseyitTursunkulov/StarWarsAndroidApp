@@ -25,7 +25,7 @@ import com.example.network.model.NetworkChangeList
 import com.example.network.model.NetworkNewsResource
 import com.example.network.model.NetworkTopic
 import com.example.network.model.PeopleResponse
-import com.example.network.model.PersonDTO
+import com.example.network.model.ActorDTO
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -117,7 +117,7 @@ internal class RetrofitNiaNetwork @Inject constructor(
 //    override suspend fun getNewsResourceChangeList(after: Int?): List<NetworkChangeList> =
 //        networkApi.getNewsResourcesChangeList(after = after)
 
-    override suspend fun getPeople(): List<PersonDTO> {
+    override suspend fun getActors(): List<ActorDTO> {
         return networkApi.getAllPeople().results
     }
 

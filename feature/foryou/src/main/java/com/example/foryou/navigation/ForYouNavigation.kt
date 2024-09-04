@@ -23,7 +23,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
-import com.example.foryou.ForYouRoute
+import com.example.foryou.ActorsRoute
 
 const val LINKED_NEWS_RESOURCE_ID = "linkedNewsResourceId"
 const val FOR_YOU_ROUTE = "for_you_route/{$LINKED_NEWS_RESOURCE_ID}"
@@ -42,6 +42,6 @@ fun NavGraphBuilder.forYouScreen(onTopicClick: (String) -> Unit) {
             navArgument(LINKED_NEWS_RESOURCE_ID) { type = NavType.StringType },
         ),
     ) {
-        ForYouRoute(onTopicClick)
+        ActorsRoute()
     }
 }
