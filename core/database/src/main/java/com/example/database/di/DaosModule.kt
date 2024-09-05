@@ -17,14 +17,8 @@
 package com.example.database.di
 
 import com.example.database.Database
-import com.example.database.NiaDatabase
 import com.example.database.dao.ActorsDao
 import com.example.database.dao.FilmsDao
-import com.example.database.dao.NewsResourceDao
-import com.example.database.dao.NewsResourceFtsDao
-import com.example.database.dao.RecentSearchQueryDao
-import com.example.database.dao.TopicDao
-import com.example.database.dao.TopicFtsDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -42,30 +36,4 @@ internal object DaosModule {
     fun provideFilmsDao(
         database: Database
     ) : FilmsDao = database.filmsDao()
-
-
-    @Provides
-    fun providesTopicsDao(
-        database: NiaDatabase,
-    ): TopicDao = database.topicDao()
-
-    @Provides
-    fun providesNewsResourceDao(
-        database: NiaDatabase,
-    ): NewsResourceDao = database.newsResourceDao()
-
-    @Provides
-    fun providesTopicFtsDao(
-        database: NiaDatabase,
-    ): TopicFtsDao = database.topicFtsDao()
-
-    @Provides
-    fun providesNewsResourceFtsDao(
-        database: NiaDatabase,
-    ): NewsResourceFtsDao = database.newsResourceFtsDao()
-
-    @Provides
-    fun providesRecentSearchQueryDao(
-        database: NiaDatabase,
-    ): RecentSearchQueryDao = database.recentSearchQueryDao()
 }
