@@ -17,6 +17,7 @@
 package com.example.myapplication
 
 import android.app.Application
+import android.util.Log
 import coil.ImageLoader
 import coil.ImageLoaderFactory
 import com.example.work.initializers.Sync
@@ -36,6 +37,7 @@ class Application : Application(), ImageLoaderFactory {
     override fun onCreate() {
         super.onCreate()
         // Initialize Sync; the system responsible for keeping data in the app up to date.
+        Log.d("HARNI","Applicaiton onCreate")
         Sync.initialize(context = this)
 //        profileVerifierLogger()
     }

@@ -17,36 +17,16 @@
 package com.example.work.workers
 
 import android.content.Context
+import android.util.Log
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.CoroutineWorker
 import androidx.work.Data
 import androidx.work.ForegroundInfo
 import androidx.work.WorkerParameters
-import dagger.hilt.EntryPoint
-import dagger.hilt.InstallIn
+import com.example.work.di.HiltWorkerFactoryEntryPoint
 import dagger.hilt.android.EntryPointAccessors
-import dagger.hilt.components.SingletonComponent
 import kotlin.reflect.KClass
 
-/**
- * An entry point to retrieve the [HiltWorkerFactory] at runtime
- */
-@EntryPoint
-@InstallIn(SingletonComponent::class)
-interface HiltWorkerFactoryEntryPoint {
-    fun hiltWorkerFactory(): HiltWorkerFactory
-}
-
-private const val WORKER_CLASS_NAME = "RouterWorkerDelegateClassName"
-
-/**
- * Adds metadata to a WorkRequest to identify what [CoroutineWorker] the [DelegatingWorker] should
- * delegate to
- */
-internal fun KClass<out CoroutineWorker>.delegatedData() =
-    Data.Builder()
-        .putString(WORKER_CLASS_NAME, qualifiedName)
-        .build()
 
 /**
  * A worker that delegates sync to another [CoroutineWorker] constructed with a [HiltWorkerFactory].
@@ -62,19 +42,44 @@ class DelegatingWorker(
     workerParams: WorkerParameters,
 ) : CoroutineWorker(appContext, workerParams) {
 
+    init {
+        Log.d("HARNI","init DelegatingWorker")
+    }
     private val workerClassName =
         workerParams.inputData.getString(WORKER_CLASS_NAME) ?: ""
 
-    private val delegateWorker =
-        EntryPointAccessors.fromApplication<HiltWorkerFactoryEntryPoint>(appContext)
+    private val delegateWorker:CoroutineWorker =
+        ( EntryPointAccessors.fromApplication<HiltWorkerFactoryEntryPoint>(appContext)
             .hiltWorkerFactory()
             .createWorker(appContext, workerClassName, workerParams)
             as? CoroutineWorker
             ?: throw IllegalArgumentException("Unable to find appropriate worker")
+                ).apply {
+                    Log.d("HARNI","delegateWorker created $this")
+            }
 
-    override suspend fun getForegroundInfo(): ForegroundInfo =
-        delegateWorker.getForegroundInfo()
 
-    override suspend fun doWork(): Result =
-        delegateWorker.doWork()
+    override suspend fun getForegroundInfo(): ForegroundInfo {
+        Log.d("HARNI","DelegatingWorker getForegroundInfo")
+        return delegateWorker.getForegroundInfo()
+    }
+
+    override suspend fun doWork(): Result {
+        Log.d("HARNI","DelegatingWorker doWork")
+        return delegateWorker.doWork()
+    }
 }
+
+
+
+
+private const val WORKER_CLASS_NAME = "RouterWorkerDelegateClassName"
+
+/**
+ * Adds metadata to a WorkRequest to identify what [CoroutineWorker] the [DelegatingWorker] should
+ * delegate to
+ */
+internal fun KClass<out CoroutineWorker>.delegatedData() =
+    Data.Builder()
+        .putString(WORKER_CLASS_NAME, qualifiedName)
+        .build()

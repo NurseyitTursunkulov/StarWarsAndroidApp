@@ -22,6 +22,7 @@ import androidx.hilt.work.HiltWorker
 import androidx.tracing.traceAsync
 import androidx.work.CoroutineWorker
 import androidx.work.ForegroundInfo
+import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.OutOfQuotaPolicy
 import androidx.work.WorkerParameters
@@ -51,11 +52,18 @@ internal class SyncWorker @AssistedInject constructor(
 //    private val analyticsHelper: AnalyticsHelper,//todo remove
 ) : CoroutineWorker(appContext, workerParams), Synchronizer {
 
-    override suspend fun getForegroundInfo(): ForegroundInfo =
-        appContext.syncForegroundInfo()
+    init {
+        Log.d("HARNI","init SyncWorker $this")
+    }
+
+    override suspend fun getForegroundInfo(): ForegroundInfo {
+        Log.d("HARNI","SyncWorker getForegroundInfo $this")
+        return appContext.syncForegroundInfo()
+    }
 
     override suspend fun doWork(): Result = withContext(ioDispatcher) {
             Log.d("NURS", "69 DO WORK started sync")
+            Log.d("HARNI", "SyncWorker 69 DO WORK started sync")
         traceAsync("Sync", 0) {
 //            analyticsHelper.logSyncStarted()
 
@@ -78,10 +86,13 @@ internal class SyncWorker @AssistedInject constructor(
         /**
          * Expedited one time work to sync data on app startup
          */
-        fun startUpSyncWork() = OneTimeWorkRequestBuilder<DelegatingWorker>()
-            .setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
-            .setConstraints(SyncConstraints)
-            .setInputData(SyncWorker::class.delegatedData())
-            .build()
+        fun startUpSyncWork(): OneTimeWorkRequest {
+            Log.d("HARNI"," SyncWorker startUpSyncWork")
+          return  OneTimeWorkRequestBuilder<DelegatingWorker>()
+                .setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
+                .setConstraints(SyncConstraints)
+                .setInputData(SyncWorker::class.delegatedData())
+                .build()
+        }
     }
 }
