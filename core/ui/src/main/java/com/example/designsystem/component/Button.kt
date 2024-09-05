@@ -33,7 +33,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.designsystem.icon.NiaIcons
+import com.example.designsystem.icon.AppIcons
 import com.example.designsystem.theme.AppTheme
 
 /**
@@ -293,7 +293,7 @@ fun NiaButtonLeadingIconPreview() {
             NiaButton(
                 onClick = {},
                 text = { Text("Test button") },
-                leadingIcon = { Icon(imageVector = NiaIcons.Add, contentDescription = null) },
+                leadingIcon = { Icon(imageVector = AppIcons.Add, contentDescription = null) },
             )
         }
     }

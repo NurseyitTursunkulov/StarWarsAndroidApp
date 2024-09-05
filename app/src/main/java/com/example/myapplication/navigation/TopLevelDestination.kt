@@ -19,7 +19,7 @@ package com.example.myapplication.navigation
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.designsystem.icon.Icon_Dark_Vaider
 import com.example.designsystem.icon.Icon_Light_Vader
-import com.example.designsystem.icon.NiaIcons
+import com.example.designsystem.icon.AppIcons
 import com.example.myapplication.R
 import com.example.actors.R as actorsR
 import com.example.films.R as filmsR
@@ -42,8 +42,8 @@ enum class TopLevelDestination(
         titleTextId = R.string.app_name,
     ),
     INTERESTS(
-        selectedIcon = NiaIcons.Grid3x3,
-        unselectedIcon = NiaIcons.Grid3x3,
+        selectedIcon = AppIcons.Grid3x3,
+        unselectedIcon = AppIcons.Grid3x3,
         iconTextId = filmsR.string.films_interests_title,
         titleTextId = filmsR.string.films_interests_title,
     ),

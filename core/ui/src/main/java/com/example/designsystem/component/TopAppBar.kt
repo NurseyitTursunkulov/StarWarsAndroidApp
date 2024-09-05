@@ -34,7 +34,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.designsystem.icon.NiaIcons
+import com.example.designsystem.icon.AppIcons
 import com.example.designsystem.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -82,9 +82,9 @@ private fun NiaTopAppBarPreview() {
     AppTheme {
         NiaTopAppBar(
             titleRes = R.string.untitled,
-            navigationIcon = NiaIcons.Search,
+            navigationIcon = AppIcons.Search,
             navigationIconContentDescription = "Navigation icon",
-            actionIcon = NiaIcons.MoreVert,
+            actionIcon = AppIcons.MoreVert,
             actionIconContentDescription = "Action icon",
         )
     }

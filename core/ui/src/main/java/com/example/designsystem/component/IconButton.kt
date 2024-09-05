@@ -24,7 +24,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.example.designsystem.icon.NiaIcons
+import com.example.designsystem.icon.AppIcons
 import com.example.designsystem.theme.AppTheme
 
 /**
@@ -80,13 +80,13 @@ fun IconButtonPreview() {
             onCheckedChange = { },
             icon = {
                 Icon(
-                    imageVector = NiaIcons.BookmarkBorder,
+                    imageVector = AppIcons.BookmarkBorder,
                     contentDescription = null,
                 )
             },
             checkedIcon = {
                 Icon(
-                    imageVector = NiaIcons.Bookmark,
+                    imageVector = AppIcons.Bookmark,
                     contentDescription = null,
                 )
             },
@@ -103,13 +103,13 @@ fun IconButtonPreviewUnchecked() {
             onCheckedChange = { },
             icon = {
                 Icon(
-                    imageVector = NiaIcons.BookmarkBorder,
+                    imageVector = AppIcons.BookmarkBorder,
                     contentDescription = null,
                 )
             },
             checkedIcon = {
                 Icon(
-                    imageVector = NiaIcons.Bookmark,
+                    imageVector = AppIcons.Bookmark,
                     contentDescription = null,
                 )
             },

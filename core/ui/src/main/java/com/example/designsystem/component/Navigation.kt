@@ -41,7 +41,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.designsystem.icon.NiaIcons
+import com.example.designsystem.icon.AppIcons
 import com.example.designsystem.theme.AppTheme
 
 /**
@@ -275,14 +275,14 @@ class NiaNavigationSuiteScope internal constructor(
 fun NiaNavigationBarPreview() {
     val items = listOf("For you", "Saved", "Interests")
     val icons = listOf(
-        NiaIcons.UpcomingBorder,
-        NiaIcons.BookmarksBorder,
-        NiaIcons.Grid3x3,
+        AppIcons.UpcomingBorder,
+        AppIcons.BookmarksBorder,
+        AppIcons.Grid3x3,
     )
     val selectedIcons = listOf(
-        NiaIcons.Upcoming,
-        NiaIcons.Bookmarks,
-        NiaIcons.Grid3x3,
+        AppIcons.Upcoming,
+        AppIcons.Bookmarks,
+        AppIcons.Grid3x3,
     )
 
     AppTheme {
@@ -315,14 +315,14 @@ fun NiaNavigationBarPreview() {
 fun NiaNavigationRailPreview() {
     val items = listOf("For you", "Saved", "Interests")
     val icons = listOf(
-        NiaIcons.UpcomingBorder,
-        NiaIcons.BookmarksBorder,
-        NiaIcons.Grid3x3,
+        AppIcons.UpcomingBorder,
+        AppIcons.BookmarksBorder,
+        AppIcons.Grid3x3,
     )
     val selectedIcons = listOf(
-        NiaIcons.Upcoming,
-        NiaIcons.Bookmarks,
-        NiaIcons.Grid3x3,
+        AppIcons.Upcoming,
+        AppIcons.Bookmarks,
+        AppIcons.Grid3x3,
     )
 
     AppTheme {

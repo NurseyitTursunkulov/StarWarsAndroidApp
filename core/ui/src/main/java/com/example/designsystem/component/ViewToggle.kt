@@ -31,7 +31,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.designsystem.icon.NiaIcons
+import com.example.designsystem.icon.AppIcons
 import com.example.designsystem.theme.AppTheme
 
 /**
@@ -68,7 +68,7 @@ fun NiaViewToggleButton(
             text = if (expanded) expandedText else compactText,
             trailingIcon = {
                 Icon(
-                    imageVector = if (expanded) NiaIcons.ViewDay else NiaIcons.ShortText,
+                    imageVector = if (expanded) AppIcons.ViewDay else AppIcons.ShortText,
                     contentDescription = null,
                 )
             },

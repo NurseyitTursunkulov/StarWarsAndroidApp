@@ -28,7 +28,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.designsystem.icon.NiaIcons
+import com.example.designsystem.icon.AppIcons
 import com.example.designsystem.theme.AppTheme
 
 /**
@@ -62,7 +62,7 @@ fun NiaFilterChip(
         leadingIcon = if (selected) {
             {
                 Icon(
-                    imageVector = NiaIcons.Check,
+                    imageVector = AppIcons.Check,
                     contentDescription = null,
                 )
             }

@@ -36,7 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.designsystem.component.DynamicAsyncImage
 import com.example.designsystem.component.NiaIconToggleButton
-import com.example.designsystem.icon.NiaIcons
+import com.example.designsystem.icon.AppIcons
 import com.example.designsystem.theme.AppTheme
 import com.example.ui.R.string
 
@@ -68,7 +68,7 @@ fun InterestsItem(
                 onCheckedChange = onFollowButtonClick,
                 icon = {
                     Icon(
-                        imageVector = NiaIcons.Add,
+                        imageVector = AppIcons.Add,
                         contentDescription = stringResource(
                             id = string.core_ui_interests_card_follow_button_content_desc,
                         ),
@@ -76,7 +76,7 @@ fun InterestsItem(
                 },
                 checkedIcon = {
                     Icon(
-                        imageVector = NiaIcons.Check,
+                        imageVector = AppIcons.Check,
                         contentDescription = stringResource(
                             id = string.core_ui_interests_card_unfollow_button_content_desc,
                         ),
@@ -106,7 +106,7 @@ private fun InterestsIcon(topicImageUrl: String, modifier: Modifier = Modifier) 
             modifier = modifier
                 .background(MaterialTheme.colorScheme.surface)
                 .padding(4.dp),
-            imageVector = NiaIcons.Person,
+            imageVector = AppIcons.Person,
             // decorative image
             contentDescription = null,
         )
