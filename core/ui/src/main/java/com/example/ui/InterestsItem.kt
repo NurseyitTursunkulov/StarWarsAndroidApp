@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.dp
 import com.example.designsystem.component.DynamicAsyncImage
 import com.example.designsystem.component.NiaIconToggleButton
 import com.example.designsystem.icon.NiaIcons
-import com.example.designsystem.theme.NiaTheme
+import com.example.designsystem.theme.AppTheme
 import com.example.ui.R.string
 
 @Composable
@@ -122,7 +122,7 @@ private fun InterestsIcon(topicImageUrl: String, modifier: Modifier = Modifier) 
 @Preview
 @Composable
 private fun InterestsCardPreview() {
-    NiaTheme {
+    AppTheme {
         Surface {
             InterestsItem(
                 name = "Compose",
@@ -139,7 +139,7 @@ private fun InterestsCardPreview() {
 @Preview
 @Composable
 private fun InterestsCardLongNamePreview() {
-    NiaTheme {
+    AppTheme {
         Surface {
             InterestsItem(
                 name = "This is a very very very very long name",
@@ -156,7 +156,7 @@ private fun InterestsCardLongNamePreview() {
 @Preview
 @Composable
 private fun InterestsCardLongDescriptionPreview() {
-    NiaTheme {
+    AppTheme {
         Surface {
             InterestsItem(
                 name = "Compose",
@@ -174,7 +174,7 @@ private fun InterestsCardLongDescriptionPreview() {
 @Preview
 @Composable
 private fun InterestsCardWithEmptyDescriptionPreview() {
-    NiaTheme {
+    AppTheme {
         Surface {
             InterestsItem(
                 name = "Compose",
@@ -191,7 +191,7 @@ private fun InterestsCardWithEmptyDescriptionPreview() {
 @Preview
 @Composable
 private fun InterestsCardSelectedPreview() {
-    NiaTheme {
+    AppTheme {
         Surface {
             InterestsItem(
                 name = "Compose",

@@ -42,18 +42,18 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
 @Composable
-fun rememberNiaAppState(
+fun rememberAppState(
     networkMonitor: NetworkMonitor,
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberNavController(),
-): NiaAppState {
+): AppState {
     NavigationTrackingSideEffect(navController)
     return remember(
         navController,
         coroutineScope,
         networkMonitor,
     ) {
-        NiaAppState(
+        AppState(
             navController = navController,
             coroutineScope = coroutineScope,
             networkMonitor = networkMonitor,
@@ -62,7 +62,7 @@ fun rememberNiaAppState(
 }
 
 @Stable
-class NiaAppState(
+class AppState(
     val navController: NavHostController,
     coroutineScope: CoroutineScope,
     networkMonitor: NetworkMonitor,

@@ -50,7 +50,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
-import com.example.designsystem.theme.NiaTheme
+import com.example.designsystem.theme.AppTheme
 import com.example.ui.R
 import kotlinx.coroutines.launch
 
@@ -166,7 +166,7 @@ fun NiaOverlayLoadingWheel(
 @ThemePreviews
 @Composable
 fun NiaLoadingWheelPreview() {
-    NiaTheme {
+    AppTheme {
         Surface {
             NiaLoadingWheel(contentDesc = "LoadingWheel")
         }
@@ -176,7 +176,7 @@ fun NiaLoadingWheelPreview() {
 @ThemePreviews
 @Composable
 fun NiaOverlayLoadingWheelPreview() {
-    NiaTheme {
+    AppTheme {
         Surface {
             NiaOverlayLoadingWheel(contentDesc = "LoadingWheel")
         }

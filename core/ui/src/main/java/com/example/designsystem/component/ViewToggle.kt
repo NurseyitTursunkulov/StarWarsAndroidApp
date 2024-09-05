@@ -32,7 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.designsystem.icon.NiaIcons
-import com.example.designsystem.theme.NiaTheme
+import com.example.designsystem.theme.AppTheme
 
 /**
  * Now in Android view toggle button with included trailing icon as well as compact and expanded
@@ -112,7 +112,7 @@ private fun NiaViewToggleButtonContent(
 @ThemePreviews
 @Composable
 fun ViewTogglePreviewExpanded() {
-    NiaTheme {
+    AppTheme {
         Surface {
             NiaViewToggleButton(
                 expanded = true,
@@ -127,7 +127,7 @@ fun ViewTogglePreviewExpanded() {
 @Preview
 @Composable
 fun ViewTogglePreviewCompact() {
-    NiaTheme {
+    AppTheme {
         Surface {
             NiaViewToggleButton(
                 expanded = false,

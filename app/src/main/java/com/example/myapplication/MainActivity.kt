@@ -22,14 +22,13 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.runtime.DisposableEffect
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.metrics.performance.JankStats
 import com.example.data.util.NetworkMonitor
-import com.example.designsystem.theme.NiaTheme
-import com.example.myapplication.ui.NiaApp
-import com.example.myapplication.ui.rememberNiaAppState
+import com.example.designsystem.theme.AppTheme
+import com.example.myapplication.ui.App
+import com.example.myapplication.ui.rememberAppState
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -99,15 +98,14 @@ class MainActivity : ComponentActivity() {
                 onDispose {}
             }
 
-            val appState = rememberNiaAppState(networkMonitor = networkMonitor)
+            val appState = rememberAppState(networkMonitor = networkMonitor)
 
-            NiaTheme(
+            AppTheme(
                 darkTheme = darkTheme,
                 androidTheme = true,
                 disableDynamicTheming = true,
             ) {
-                @OptIn(ExperimentalMaterial3AdaptiveApi::class)
-                NiaApp(appState)
+                App(appState)
             }
 
         }

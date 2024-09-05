@@ -22,7 +22,7 @@ import androidx.navigation.compose.NavHost
 import com.example.actors.navigation.ACTORS_ROUTE
 import com.example.actors.navigation.forYouScreen
 import com.example.films.navigation.interestsScreen
-import com.example.myapplication.ui.NiaAppState
+import com.example.myapplication.ui.AppState
 //import com.example.myapplication.ui.interests2pane.interestsListDetailScreen
 
 /**
@@ -33,8 +33,8 @@ import com.example.myapplication.ui.NiaAppState
  * within each route is handled using state and Back Handlers.
  */
 @Composable
-fun NiaNavHost(
-    appState: NiaAppState,
+fun NavHost(
+    appState: AppState,
     modifier: Modifier = Modifier,
     startDestination: String = ACTORS_ROUTE,
 ) {

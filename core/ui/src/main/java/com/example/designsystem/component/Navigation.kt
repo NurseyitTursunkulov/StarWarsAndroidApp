@@ -42,7 +42,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.designsystem.icon.NiaIcons
-import com.example.designsystem.theme.NiaTheme
+import com.example.designsystem.theme.AppTheme
 
 /**
  * Now in Android navigation bar item with icon and label content slots. Wraps Material 3
@@ -189,7 +189,7 @@ fun NiaNavigationRail(
     ExperimentalMaterial3AdaptiveApi::class,
 )
 @Composable
-fun NiaNavigationSuiteScaffold(
+fun NavigationSuiteScaffold(
     navigationSuiteItems: NiaNavigationSuiteScope.() -> Unit,
     modifier: Modifier = Modifier,
     windowAdaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfo(),
@@ -285,7 +285,7 @@ fun NiaNavigationBarPreview() {
         NiaIcons.Grid3x3,
     )
 
-    NiaTheme {
+    AppTheme {
         NiaNavigationBar {
             items.forEachIndexed { index, item ->
                 NiaNavigationBarItem(
@@ -325,7 +325,7 @@ fun NiaNavigationRailPreview() {
         NiaIcons.Grid3x3,
     )
 
-    NiaTheme {
+    AppTheme {
         NiaNavigationRail {
             items.forEachIndexed { index, item ->
                 NiaNavigationRailItem(

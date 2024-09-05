@@ -30,7 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.designsystem.theme.NiaTheme
+import com.example.designsystem.theme.AppTheme
 
 /**
  * Now in Android tab. Wraps Material 3 [Tab] and shifts text label down.
@@ -102,7 +102,7 @@ fun NiaTabRow(
 @ThemePreviews
 @Composable
 fun TabsPreview() {
-    NiaTheme {
+    AppTheme {
         val titles = listOf("Topics", "People")
         NiaTabRow(selectedTabIndex = 0) {
             titles.forEachIndexed { index, title ->

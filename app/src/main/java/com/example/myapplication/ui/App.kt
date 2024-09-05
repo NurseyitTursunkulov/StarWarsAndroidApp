@@ -36,16 +36,12 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.WindowAdaptiveInfo
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
@@ -60,28 +56,26 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
-import com.example.designsystem.component.NiaBackground
-import com.example.designsystem.component.NiaGradientBackground
-import com.example.designsystem.component.NiaNavigationSuiteScaffold
+import com.example.designsystem.component.AppBackground
+import com.example.designsystem.component.AppGradientBackground
+import com.example.designsystem.component.NavigationSuiteScaffold
 import com.example.designsystem.theme.GradientColors
 import com.example.designsystem.theme.LocalGradientColors
 import com.example.myapplication.R
-import com.example.myapplication.navigation.NiaNavHost
+import com.example.myapplication.navigation.NavHost
 import com.example.myapplication.navigation.TopLevelDestination
 
-@OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
-fun NiaApp(
-    appState: NiaAppState,
+fun App(
+    appState: AppState,
     modifier: Modifier = Modifier,
     windowAdaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfo(),
 ) {
     val shouldShowGradientBackground =
         appState.currentTopLevelDestination == TopLevelDestination.ACTORS
-    var showSettingsDialog by rememberSaveable { mutableStateOf(false) }
 
-    NiaBackground(modifier = modifier) {
-        NiaGradientBackground(
+    AppBackground(modifier = modifier) {
+        AppGradientBackground(
             gradientColors = if (shouldShowGradientBackground) {
                 LocalGradientColors.current
             } else {
@@ -103,12 +97,9 @@ fun NiaApp(
                 }
             }
 
-            NiaApp(
+            App(
                 appState = appState,
                 snackbarHostState = snackbarHostState,
-                showSettingsDialog = showSettingsDialog,
-                onSettingsDismissed = { showSettingsDialog = false },
-                onTopAppBarActionClick = { showSettingsDialog = true },
                 windowAdaptiveInfo = windowAdaptiveInfo,
             )
         }
@@ -119,20 +110,16 @@ fun NiaApp(
 @OptIn(
     ExperimentalMaterial3Api::class,
     ExperimentalComposeUiApi::class,
-    ExperimentalMaterial3AdaptiveApi::class,
 )
-internal fun NiaApp(
-    appState: NiaAppState,
+internal fun App(
+    appState: AppState,
     snackbarHostState: SnackbarHostState,
-    showSettingsDialog: Boolean,
-    onSettingsDismissed: () -> Unit,
-    onTopAppBarActionClick: () -> Unit,
     modifier: Modifier = Modifier,
     windowAdaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfo(),
 ) {
     val currentDestination = appState.currentDestination
 
-    NiaNavigationSuiteScaffold(
+    NavigationSuiteScaffold(
         navigationSuiteItems = {
             appState.topLevelDestinations.forEach { destination ->
                 val selected = currentDestination
@@ -191,12 +178,12 @@ internal fun NiaApp(
                         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                             containerColor = Color.Transparent,
                         ),
-                        modifier = modifier.testTag("niaTopAppBar"),
+                        modifier = modifier.testTag("TopAppBar"),
                     )
                 }
 
                 Box() {
-                    NiaNavHost(
+                    NavHost(
                         appState = appState
                     )
                 }
