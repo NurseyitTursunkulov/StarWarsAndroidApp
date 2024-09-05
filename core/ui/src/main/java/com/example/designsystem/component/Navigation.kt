@@ -273,7 +273,7 @@ class NiaNavigationSuiteScope internal constructor(
 @ThemePreviews
 @Composable
 fun NiaNavigationBarPreview() {
-    val items = listOf("For you", "Saved", "Interests")
+    val items = listOf("Actors", "Films")
     val icons = listOf(
         AppIcons.UpcomingBorder,
         AppIcons.BookmarksBorder,
@@ -313,7 +313,7 @@ fun NiaNavigationBarPreview() {
 @ThemePreviews
 @Composable
 fun NiaNavigationRailPreview() {
-    val items = listOf("For you", "Saved", "Interests")
+    val items = listOf("actors", "Films")
     val icons = listOf(
         AppIcons.UpcomingBorder,
         AppIcons.BookmarksBorder,
