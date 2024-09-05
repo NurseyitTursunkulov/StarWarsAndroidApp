@@ -42,6 +42,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.designsystem.icon.AppIcons
+import com.example.designsystem.icon.Icon_Dark_Vaider
 import com.example.designsystem.theme.AppTheme
 
 /**
@@ -275,12 +276,12 @@ class NiaNavigationSuiteScope internal constructor(
 fun NiaNavigationBarPreview() {
     val items = listOf("Actors", "Films")
     val icons = listOf(
-        AppIcons.UpcomingBorder,
+        Icon_Dark_Vaider,
         AppIcons.BookmarksBorder,
         AppIcons.Grid3x3,
     )
     val selectedIcons = listOf(
-        AppIcons.Upcoming,
+        Icon_Dark_Vaider,
         AppIcons.Bookmarks,
         AppIcons.Grid3x3,
     )
@@ -315,12 +316,12 @@ fun NiaNavigationBarPreview() {
 fun NiaNavigationRailPreview() {
     val items = listOf("actors", "Films")
     val icons = listOf(
-        AppIcons.UpcomingBorder,
+        Icon_Dark_Vaider,
         AppIcons.BookmarksBorder,
         AppIcons.Grid3x3,
     )
     val selectedIcons = listOf(
-        AppIcons.Upcoming,
+        Icon_Dark_Vaider,
         AppIcons.Bookmarks,
         AppIcons.Grid3x3,
     )

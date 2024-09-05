@@ -23,7 +23,7 @@ import kotlin.annotation.AnnotationRetention.RUNTIME
 @Retention(RUNTIME)
 annotation class Dispatcher(val niaDispatcher: AppDispatchers)
 
-enum class AppDispatchers {//todo rename
+enum class AppDispatchers {
     Default,
     IO,
 }

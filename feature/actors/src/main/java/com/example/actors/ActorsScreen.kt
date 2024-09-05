@@ -59,14 +59,13 @@ internal fun ActorsScreen(
                 LazyColumn {
                     items(actorsUiState.actors) { userNewsResource ->
 
-//                        Text(text = userNewsResource.name)
                         Spacer(modifier = Modifier.height(2.dp))
                         StarWarsResourceCardExpanded(
                             title = userNewsResource.name,
                             descriptions = listOf(
                                 "height ${userNewsResource.height}",
                                 "mass ${userNewsResource.mass}",
-                                "birth year ${userNewsResource.birth_year}",
+                                "birth year ${userNewsResource.birthYear}",
                                 "gender ${userNewsResource.gender}"
                             ),
                             onClick = { /* ... */ },

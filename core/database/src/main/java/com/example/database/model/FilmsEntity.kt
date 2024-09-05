@@ -21,10 +21,10 @@ data class FilmsEntity(
 
 fun FilmsEntity.asExternalModel() = Film(
     title = title,
-    opening_crawl = opening_crawl,
+    openingCrawl = opening_crawl,
     director = director,
     producer = producer,
-    release_date = release_date,
+    releaseDate = release_date,
     created = created,
     edited = edited,
     url = url

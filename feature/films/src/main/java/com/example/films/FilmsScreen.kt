@@ -61,10 +61,10 @@ internal fun FilmsScreen(
                             StarWarsResourceCardExpanded(
                                 title = film.title,
                                 descriptions = listOf(
-                                    film.opening_crawl,
+                                    film.openingCrawl,
                                     "director ${film.director}",
                                     "producer ${film.producer}",
-                                    "release date ${film.release_date}"
+                                    "release date ${film.releaseDate}"
                                 ),
                                 onClick = { /* ... */ },
                                 modifier = Modifier

@@ -23,7 +23,6 @@ import com.example.actors.navigation.ACTORS_ROUTE
 import com.example.actors.navigation.forYouScreen
 import com.example.films.navigation.interestsScreen
 import com.example.myapplication.ui.AppState
-//import com.example.myapplication.ui.interests2pane.interestsListDetailScreen
 
 /**
  * Top-level navigation graph. Navigation is organized as explained at

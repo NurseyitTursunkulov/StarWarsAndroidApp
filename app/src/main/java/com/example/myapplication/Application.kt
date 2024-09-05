@@ -18,29 +18,17 @@ package com.example.myapplication
 
 import android.app.Application
 import android.util.Log
-import coil.ImageLoader
-import coil.ImageLoaderFactory
 import com.example.work.initializers.Sync
 import dagger.hilt.android.HiltAndroidApp
-import javax.inject.Inject
 
-/**
- * [Application] class for NiA
- */
 @HiltAndroidApp
-class Application : Application(), ImageLoaderFactory {
-    @Inject
-    lateinit var imageLoader: dagger.Lazy<ImageLoader>
-
-
+class Application : Application(){
 
     override fun onCreate() {
         super.onCreate()
         // Initialize Sync; the system responsible for keeping data in the app up to date.
         Log.d("HARNI","Applicaiton onCreate")
         Sync.initialize(context = this)
-//        profileVerifierLogger()
     }
 
-    override fun newImageLoader(): ImageLoader = imageLoader.get()
 }
