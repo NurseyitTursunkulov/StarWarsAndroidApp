@@ -29,11 +29,9 @@ import com.example.common.network.Dispatcher
 import com.example.common.network.NiaDispatchers
 import com.example.data.Synchronizer
 import com.example.data.repository.StarWarsRepository
-import com.example.datastore.datastore.NiaPreferencesDataSource
 import com.example.work.initializers.SyncConstraints
 import com.example.work.initializers.syncForegroundInfo
 import com.example.work.status.SyncSubscriber
-import com.google.samples.apps.nowinandroid.core.datastore.ChangeListVersions
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.CoroutineDispatcher
@@ -49,7 +47,6 @@ import kotlinx.coroutines.withContext
 internal class SyncWorker @AssistedInject constructor(
     @Assisted private val appContext: Context,
     @Assisted workerParams: WorkerParameters,
-    private val niaPreferences: NiaPreferencesDataSource,
     private val starWarsRepository: StarWarsRepository,
     @Dispatcher(NiaDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
 //    private val analyticsHelper: AnalyticsHelper,//todo remove
@@ -79,13 +76,6 @@ internal class SyncWorker @AssistedInject constructor(
             }
         }
     }
-
-    override suspend fun getChangeListVersions(): ChangeListVersions =
-        niaPreferences.getChangeListVersions()
-
-    override suspend fun updateChangeListVersions(
-        update: ChangeListVersions.() -> ChangeListVersions,
-    ) = niaPreferences.updateChangeListVersion(update)
 
     companion object {
         /**
