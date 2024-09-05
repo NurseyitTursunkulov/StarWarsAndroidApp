@@ -26,7 +26,7 @@ const val ACTORS_ROUTE = "actors_route"
 
 fun NavController.navigateToForYou(navOptions: NavOptions) = navigate(ACTORS_ROUTE, navOptions)
 
-fun NavGraphBuilder.forYouScreen() {
+fun NavGraphBuilder.actorsScreen() {
     composable(
         route = ACTORS_ROUTE,
     ) {

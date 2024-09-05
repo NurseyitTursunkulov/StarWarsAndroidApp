@@ -28,7 +28,7 @@ fun NavController.navigateToInterests(navOptions: NavOptions) {
     navigate(FILMS_ROUTE_BASE,navOptions)
 }
 
-fun NavGraphBuilder.interestsScreen(
+fun NavGraphBuilder.filmsScreen(
 ) {
     composable(
         route = FILMS_ROUTE_BASE

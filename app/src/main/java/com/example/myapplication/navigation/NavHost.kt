@@ -20,8 +20,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import com.example.actors.navigation.ACTORS_ROUTE
-import com.example.actors.navigation.forYouScreen
-import com.example.films.navigation.interestsScreen
+import com.example.actors.navigation.actorsScreen
+import com.example.films.navigation.filmsScreen
 import com.example.myapplication.ui.AppState
 
 /**
@@ -43,7 +43,7 @@ fun NavHost(
         startDestination = startDestination,
         modifier = modifier,
     ) {
-        forYouScreen()
-        interestsScreen()
+        actorsScreen()
+        filmsScreen()
     }
 }
