@@ -3,7 +3,7 @@ package com.example.data.repository
 import android.util.Log
 import com.example.data.Synchronizer
 import com.example.data.changeListSync
-import com.example.data.model.asEntity
+import com.example.data.util.asEntity
 import com.example.database.dao.ActorsDao
 import com.example.database.dao.FilmsDao
 import com.example.database.model.ActorsEntity

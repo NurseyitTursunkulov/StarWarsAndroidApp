@@ -31,7 +31,6 @@ import androidx.navigation.navOptions
 import androidx.tracing.trace
 import com.example.actors.navigation.ACTORS_ROUTE
 import com.example.actors.navigation.navigateToForYou
-import com.example.data.repository.UserNewsResourceRepository
 import com.example.data.util.NetworkMonitor
 import com.example.data.util.TimeZoneMonitor
 import com.example.films.navigation.INTERESTS_ROUTE_BASE
@@ -40,8 +39,6 @@ import com.example.myapplication.navigation.TopLevelDestination
 import com.example.ui.TrackDisposableJank
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.datetime.TimeZone
@@ -49,7 +46,6 @@ import kotlinx.datetime.TimeZone
 @Composable
 fun rememberNiaAppState(
     networkMonitor: NetworkMonitor,
-    userNewsResourceRepository: UserNewsResourceRepository,
     timeZoneMonitor: TimeZoneMonitor,
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberNavController(),
@@ -59,14 +55,12 @@ fun rememberNiaAppState(
         navController,
         coroutineScope,
         networkMonitor,
-        userNewsResourceRepository,
         timeZoneMonitor,
     ) {
         NiaAppState(
             navController = navController,
             coroutineScope = coroutineScope,
             networkMonitor = networkMonitor,
-            userNewsResourceRepository = userNewsResourceRepository,
             timeZoneMonitor = timeZoneMonitor,
         )
     }
@@ -77,7 +71,6 @@ class NiaAppState(
     val navController: NavHostController,
     coroutineScope: CoroutineScope,
     networkMonitor: NetworkMonitor,
-    userNewsResourceRepository: UserNewsResourceRepository,
     timeZoneMonitor: TimeZoneMonitor,
 ) {
     val currentDestination: NavDestination?
@@ -104,23 +97,7 @@ class NiaAppState(
      * route.
      */
     val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.entries
-
-    /**
-     * The top level destinations that have unread news resources.
-     */
-    val topLevelDestinationsWithUnreadResources: StateFlow<Set<TopLevelDestination>> =
-        userNewsResourceRepository.observeAllForFollowedTopics()
-            .combine(userNewsResourceRepository.observeAllBookmarked()) { forYouNewsResources, bookmarkedNewsResources ->
-                setOfNotNull(
-                    TopLevelDestination.ACTORS.takeIf { forYouNewsResources.any { !it.hasBeenViewed } },
-                )
-            }
-            .stateIn(
-                coroutineScope,
-                SharingStarted.WhileSubscribed(5_000),
-                initialValue = emptySet(),
-            )
-
+    
     val currentTimeZone = timeZoneMonitor.currentTimeZone
         .stateIn(
             coroutineScope,

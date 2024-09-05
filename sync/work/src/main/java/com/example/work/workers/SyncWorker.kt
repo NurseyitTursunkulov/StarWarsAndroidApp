@@ -28,10 +28,7 @@ import androidx.work.WorkerParameters
 import com.example.common.network.Dispatcher
 import com.example.common.network.NiaDispatchers
 import com.example.data.Synchronizer
-import com.example.data.repository.NewsRepository
-import com.example.data.repository.SearchContentsRepository
 import com.example.data.repository.StarWarsRepository
-import com.example.data.repository.TopicsRepository
 import com.example.datastore.datastore.NiaPreferencesDataSource
 import com.example.work.initializers.SyncConstraints
 import com.example.work.initializers.syncForegroundInfo
@@ -53,10 +50,7 @@ internal class SyncWorker @AssistedInject constructor(
     @Assisted private val appContext: Context,
     @Assisted workerParams: WorkerParameters,
     private val niaPreferences: NiaPreferencesDataSource,
-    private val topicRepository: TopicsRepository,
-    private val newsRepository: NewsRepository,
     private val starWarsRepository: StarWarsRepository,
-    private val searchContentsRepository: SearchContentsRepository,
     @Dispatcher(NiaDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
 //    private val analyticsHelper: AnalyticsHelper,//todo remove
     private val syncSubscriber: SyncSubscriber,
@@ -73,15 +67,12 @@ internal class SyncWorker @AssistedInject constructor(
 
             // First sync the repositories in parallel
             val syncedSuccessfully = awaitAll(
-                async { topicRepository.sync() },
-                async { newsRepository.sync() },
                 async { starWarsRepository.sync() },
             ).all { it }
 
 //            analyticsHelper.logSyncFinished(syncedSuccessfully)
 
             if (syncedSuccessfully) {
-                searchContentsRepository.populateFtsData()
                 Result.success()
             } else {
                 Result.retry()

@@ -132,14 +132,11 @@ internal fun NiaApp(
     modifier: Modifier = Modifier,
     windowAdaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfo(),
 ) {
-    val unreadDestinations by appState.topLevelDestinationsWithUnreadResources
-        .collectAsStateWithLifecycle()
     val currentDestination = appState.currentDestination
 
     NiaNavigationSuiteScaffold(
         navigationSuiteItems = {
             appState.topLevelDestinations.forEach { destination ->
-                val hasUnread = unreadDestinations.contains(destination)
                 val selected = currentDestination
                     .isTopLevelDestinationInHierarchy(destination)
                 item(
@@ -161,7 +158,7 @@ internal fun NiaApp(
                     modifier =
                     Modifier
                         .testTag("NiaNavItem")
-                        .then(if (hasUnread) Modifier.notificationDot() else Modifier),
+                        .then(Modifier.notificationDot()),
                 )
             }
         },

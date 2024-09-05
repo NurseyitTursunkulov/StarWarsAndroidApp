@@ -1,4 +1,4 @@
-package com.example.data.model
+package com.example.data.util
 
 import com.example.database.model.ActorsEntity
 import com.example.database.model.FilmsEntity
