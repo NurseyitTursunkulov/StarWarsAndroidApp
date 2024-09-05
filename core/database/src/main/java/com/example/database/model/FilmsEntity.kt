@@ -13,11 +13,6 @@ data class FilmsEntity(
     val director: String,
     val producer: String,
     val release_date: String,
-//    val characters: List<String>,
-//    val planets: List<String>,
-//    val starships: List<String>,
-//    val vehicles: List<String>,
-//    val species: List<String>,
     val created: String,
     val edited: String,
     @PrimaryKey
@@ -30,11 +25,6 @@ fun FilmsEntity.asExternalModel() = Film(
     director = director,
     producer = producer,
     release_date = release_date,
-//    characters = characters,
-//    planets = planets,
-//    starships = starships,
-//    vehicles = vehicles,
-//    species = species,
     created = created,
     edited = edited,
     url = url

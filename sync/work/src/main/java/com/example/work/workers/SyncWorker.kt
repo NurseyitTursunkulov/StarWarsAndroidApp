@@ -27,7 +27,7 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.OutOfQuotaPolicy
 import androidx.work.WorkerParameters
 import com.example.common.network.Dispatcher
-import com.example.common.network.NiaDispatchers
+import com.example.common.network.AppDispatchers
 import com.example.data.Synchronizer
 import com.example.data.repository.StarWarsRepository
 import com.example.work.initializers.SyncConstraints
@@ -48,7 +48,7 @@ internal class SyncWorker @AssistedInject constructor(
     @Assisted private val appContext: Context,
     @Assisted workerParams: WorkerParameters,
     private val starWarsRepository: StarWarsRepository,
-    @Dispatcher(NiaDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
+    @Dispatcher(AppDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
 //    private val analyticsHelper: AnalyticsHelper,//todo remove
 ) : CoroutineWorker(appContext, workerParams), Synchronizer {
 

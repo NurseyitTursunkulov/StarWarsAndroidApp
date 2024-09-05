@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.core.network.di
+package com.example.common.network.di
 
+import com.example.common.network.AppDispatchers.Default
 import com.example.common.network.Dispatcher
-import com.example.common.network.NiaDispatchers.Default
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -16,9 +16,9 @@
 
 package com.example.common.network.di
 
+import com.example.common.network.AppDispatchers.Default
+import com.example.common.network.AppDispatchers.IO
 import com.example.common.network.Dispatcher
-import com.example.common.network.NiaDispatchers.Default
-import com.example.common.network.NiaDispatchers.IO
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
