@@ -14,19 +14,22 @@
  * limitations under the License.
  */
 
-package com.example.common.result
+package com.example.actors.navigation
 
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onStart
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavOptions
+import androidx.navigation.compose.composable
+import com.example.actors.ActorsRoute
 
-sealed interface Result<out T> {
-    data class Success<T>(val data: T) : Result<T>
-    data class Error(val exception: Throwable) : Result<Nothing>
-    data object Loading : Result<Nothing>
+const val ACTORS_ROUTE = "actors_route"
+
+fun NavController.navigateToActors(navOptions: NavOptions) = navigate(ACTORS_ROUTE, navOptions)
+
+fun NavGraphBuilder.actorsScreen() {
+    composable(
+        route = ACTORS_ROUTE,
+    ) {
+        ActorsRoute()
+    }
 }
-
-fun <T> Flow<T>.asResult(): Flow<Result<T>> = map<T, Result<T>> { Result.Success(it) }
-    .onStart { emit(Result.Loading) }
-    .catch { emit(Result.Error(it)) }

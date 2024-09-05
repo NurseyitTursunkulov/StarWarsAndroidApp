@@ -29,7 +29,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import androidx.tracing.trace
 import com.example.actors.navigation.ACTORS_ROUTE
-import com.example.actors.navigation.navigateToForYou
+import com.example.actors.navigation.navigateToActors
 import com.example.data.util.NetworkMonitor
 import com.example.films.navigation.FILMS_ROUTE_BASE
 import com.example.films.navigation.navigateToInterests
@@ -116,7 +116,7 @@ class AppState(
             }
 
             when (topLevelDestination) {
-                TopLevelDestination.ACTORS -> navController.navigateToForYou(topLevelNavOptions)
+                TopLevelDestination.ACTORS -> navController.navigateToActors(topLevelNavOptions)
                 TopLevelDestination.INTERESTS -> {
                     navController.navigateToInterests(topLevelNavOptions)
                 }

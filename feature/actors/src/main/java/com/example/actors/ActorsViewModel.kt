@@ -1,6 +1,5 @@
 package com.example.actors
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.util.SyncManager
@@ -16,7 +15,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ActorsViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
     syncManager: SyncManager,
     getActorsUseCase: GetActorsUseCase,
 ) : ViewModel() {

@@ -22,7 +22,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.example.films.FilmsRoute
 
-const val FILMS_ROUTE_BASE = "interests_route"
+const val FILMS_ROUTE_BASE = "films_route"
 
 fun NavController.navigateToInterests(navOptions: NavOptions) {
     navigate(FILMS_ROUTE_BASE,navOptions)
