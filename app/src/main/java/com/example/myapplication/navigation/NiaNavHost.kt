@@ -35,7 +35,6 @@ import com.example.myapplication.ui.NiaAppState
 @Composable
 fun NiaNavHost(
     appState: NiaAppState,
-    onShowSnackbar: suspend (String, String?) -> Boolean,
     modifier: Modifier = Modifier,
     startDestination: String = ACTORS_ROUTE,
 ) {

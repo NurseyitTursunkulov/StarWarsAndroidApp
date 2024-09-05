@@ -20,8 +20,6 @@ import com.example.data.repository.OfflineFirstStarWarsRepository
 import com.example.data.repository.StarWarsRepository
 import com.example.data.util.ConnectivityManagerNetworkMonitor
 import com.example.data.util.NetworkMonitor
-import com.example.data.util.TimeZoneBroadcastMonitor
-import com.example.data.util.TimeZoneMonitor
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -38,7 +36,4 @@ abstract class DataModule {
     internal abstract fun bindsNetworkMonitor(
         networkMonitor: ConnectivityManagerNetworkMonitor,
     ): NetworkMonitor
-
-    @Binds
-    internal abstract fun binds(impl: TimeZoneBroadcastMonitor): TimeZoneMonitor
 }

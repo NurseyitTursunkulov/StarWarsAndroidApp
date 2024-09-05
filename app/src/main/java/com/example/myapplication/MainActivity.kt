@@ -21,20 +21,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.getValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.metrics.performance.JankStats
 import com.example.data.util.NetworkMonitor
-import com.example.data.util.TimeZoneMonitor
 import com.example.designsystem.theme.NiaTheme
 import com.example.myapplication.ui.NiaApp
 import com.example.myapplication.ui.rememberNiaAppState
-import com.example.ui.LocalTimeZone
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -52,10 +47,6 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var networkMonitor: NetworkMonitor
 
-    @Inject
-    lateinit var timeZoneMonitor: TimeZoneMonitor
-
-    val viewModel: MainActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
@@ -88,9 +79,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            val darkTheme = true
+            val darkTheme = isSystemInDarkTheme()
 
-            // Update the edge to edge configuration to match the theme
+            // Update the edge to edge configuration to match the themex
             // This is the same parameters as the default enableEdgeToEdge call, but we manually
             // resolve whether or not to show dark theme using uiState, since it can be different
             // than the configuration's dark theme value based on the user preference.
@@ -108,25 +99,17 @@ class MainActivity : ComponentActivity() {
                 onDispose {}
             }
 
-            val appState = rememberNiaAppState(
-                networkMonitor = networkMonitor,
-                timeZoneMonitor = timeZoneMonitor,
-            )
+            val appState = rememberNiaAppState(networkMonitor = networkMonitor)
 
-            val currentTimeZone by appState.currentTimeZone.collectAsStateWithLifecycle()
-
-            CompositionLocalProvider(
-                LocalTimeZone provides currentTimeZone,
+            NiaTheme(
+                darkTheme = darkTheme,
+                androidTheme = true,
+                disableDynamicTheming = true,
             ) {
-                NiaTheme(
-                    darkTheme = darkTheme,
-                    androidTheme = true,
-                    disableDynamicTheming = true,
-                ) {
-                    @OptIn(ExperimentalMaterial3AdaptiveApi::class)
-                    NiaApp(appState)
-                }
+                @OptIn(ExperimentalMaterial3AdaptiveApi::class)
+                NiaApp(appState)
             }
+
         }
     }
 

@@ -32,7 +32,6 @@ import androidx.tracing.trace
 import com.example.actors.navigation.ACTORS_ROUTE
 import com.example.actors.navigation.navigateToForYou
 import com.example.data.util.NetworkMonitor
-import com.example.data.util.TimeZoneMonitor
 import com.example.films.navigation.INTERESTS_ROUTE_BASE
 import com.example.films.navigation.navigateToInterests
 import com.example.myapplication.navigation.TopLevelDestination
@@ -41,12 +40,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.datetime.TimeZone
 
 @Composable
 fun rememberNiaAppState(
     networkMonitor: NetworkMonitor,
-    timeZoneMonitor: TimeZoneMonitor,
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberNavController(),
 ): NiaAppState {
@@ -55,13 +52,11 @@ fun rememberNiaAppState(
         navController,
         coroutineScope,
         networkMonitor,
-        timeZoneMonitor,
     ) {
         NiaAppState(
             navController = navController,
             coroutineScope = coroutineScope,
             networkMonitor = networkMonitor,
-            timeZoneMonitor = timeZoneMonitor,
         )
     }
 }
@@ -71,7 +66,6 @@ class NiaAppState(
     val navController: NavHostController,
     coroutineScope: CoroutineScope,
     networkMonitor: NetworkMonitor,
-    timeZoneMonitor: TimeZoneMonitor,
 ) {
     val currentDestination: NavDestination?
         @Composable get() = navController
@@ -97,13 +91,7 @@ class NiaAppState(
      * route.
      */
     val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.entries
-    
-    val currentTimeZone = timeZoneMonitor.currentTimeZone
-        .stateIn(
-            coroutineScope,
-            SharingStarted.WhileSubscribed(5_000),
-            TimeZone.currentSystemDefault(),
-        )
+
 
     /**
      * UI logic for navigating to a top level destination in the app. Top level destinations have

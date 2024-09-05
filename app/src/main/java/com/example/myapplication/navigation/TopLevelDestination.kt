@@ -21,8 +21,8 @@ import com.example.designsystem.icon.Icon_Dark_Vaider
 import com.example.designsystem.icon.Icon_Light_Vader
 import com.example.designsystem.icon.NiaIcons
 import com.example.myapplication.R
-import com.example.actors.R as actors
-import com.example.films.R as searchR
+import com.example.actors.R as actorsR
+import com.example.films.R as filmsR
 
 /**
  * Type for the top level destinations in the application. Each of these destinations
@@ -38,13 +38,13 @@ enum class TopLevelDestination(
     ACTORS(
         selectedIcon = Icon_Dark_Vaider,
         unselectedIcon = Icon_Light_Vader,
-        iconTextId = actors.string.actors_title,
+        iconTextId = actorsR.string.actors_title,
         titleTextId = R.string.app_name,
     ),
     INTERESTS(
         selectedIcon = NiaIcons.Grid3x3,
         unselectedIcon = NiaIcons.Grid3x3,
-        iconTextId = searchR.string.films_interests_title,
-        titleTextId = searchR.string.films_interests_title,
+        iconTextId = filmsR.string.films_interests_title,
+        titleTextId = filmsR.string.films_interests_title,
     ),
 }
