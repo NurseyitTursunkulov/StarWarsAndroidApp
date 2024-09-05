@@ -27,7 +27,6 @@ class Application : Application(){
     override fun onCreate() {
         super.onCreate()
         // Initialize Sync; the system responsible for keeping data in the app up to date.
-        Log.d("HARNI","Applicaiton onCreate")
         Sync.initialize(context = this)
     }
 

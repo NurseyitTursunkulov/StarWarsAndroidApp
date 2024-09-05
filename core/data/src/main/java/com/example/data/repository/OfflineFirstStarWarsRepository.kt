@@ -31,7 +31,6 @@ class OfflineFirstStarWarsRepository @Inject constructor(private val remoteDataS
     override suspend fun syncWith(synchronizer: Synchronizer): Boolean {
         return synchronizer.changeListSync {
             val actorDTOList = remoteDataSource.getActors()// todo run in parallel
-            Log.d("NURS", "syncWith: $actorDTOList")
             localActorsDataSource.insertActors(actorDTOList.map { it.asEntity() })
             val filmDTOList = remoteDataSource.getFilms()
             localFilmsDataSource.insertFilms(filmDTOList.map { it.asEntity() })

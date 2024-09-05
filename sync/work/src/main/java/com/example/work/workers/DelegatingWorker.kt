@@ -17,7 +17,6 @@
 package com.example.work.workers
 
 import android.content.Context
-import android.util.Log
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.CoroutineWorker
 import androidx.work.Data
@@ -42,9 +41,6 @@ class DelegatingWorker(
     workerParams: WorkerParameters,
 ) : CoroutineWorker(appContext, workerParams) {
 
-    init {
-        Log.d("HARNI","init DelegatingWorker")
-    }
     private val workerClassName =
         workerParams.inputData.getString(WORKER_CLASS_NAME) ?: ""
 
@@ -54,18 +50,14 @@ class DelegatingWorker(
             .createWorker(appContext, workerClassName, workerParams)
             as? CoroutineWorker
             ?: throw IllegalArgumentException("Unable to find appropriate worker")
-                ).apply {
-                    Log.d("HARNI","delegateWorker created $this")
-            }
+                )
 
 
     override suspend fun getForegroundInfo(): ForegroundInfo {
-        Log.d("HARNI","DelegatingWorker getForegroundInfo")
         return delegateWorker.getForegroundInfo()
     }
 
     override suspend fun doWork(): Result {
-        Log.d("HARNI","DelegatingWorker doWork")
         return delegateWorker.doWork()
     }
 }

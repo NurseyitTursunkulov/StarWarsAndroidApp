@@ -16,6 +16,7 @@ import javax.inject.Inject
 class FilmsViewModel @Inject constructor(
     getFilmsUseCase: GetFilmsUseCase,
 ) : ViewModel() {
+
     val uiState: StateFlow<FilmsUiState> =
         getFilmsUseCase().map<List<Film>, FilmsUiState>(FilmsUiState::Films)
             .onStart { emit(FilmsUiState.Loading) }

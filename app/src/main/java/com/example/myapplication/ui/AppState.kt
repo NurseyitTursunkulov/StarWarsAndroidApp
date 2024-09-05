@@ -16,7 +16,6 @@
 
 package com.example.myapplication.ui
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
@@ -32,7 +31,7 @@ import androidx.tracing.trace
 import com.example.actors.navigation.ACTORS_ROUTE
 import com.example.actors.navigation.navigateToForYou
 import com.example.data.util.NetworkMonitor
-import com.example.films.navigation.INTERESTS_ROUTE_BASE
+import com.example.films.navigation.FILMS_ROUTE_BASE
 import com.example.films.navigation.navigateToInterests
 import com.example.myapplication.navigation.TopLevelDestination
 import com.example.ui.TrackDisposableJank
@@ -74,7 +73,7 @@ class AppState(
     val currentTopLevelDestination: TopLevelDestination?
         @Composable get() = when (currentDestination?.route) {
             ACTORS_ROUTE -> TopLevelDestination.ACTORS
-            INTERESTS_ROUTE_BASE -> TopLevelDestination.INTERESTS
+            FILMS_ROUTE_BASE -> TopLevelDestination.INTERESTS
             else -> null
         }
 
@@ -119,7 +118,6 @@ class AppState(
             when (topLevelDestination) {
                 TopLevelDestination.ACTORS -> navController.navigateToForYou(topLevelNavOptions)
                 TopLevelDestination.INTERESTS -> {
-                    Log.d("NURS", "navigateToTopLevelDestination INTERESTS: ")
                     navController.navigateToInterests(topLevelNavOptions)
                 }
             }

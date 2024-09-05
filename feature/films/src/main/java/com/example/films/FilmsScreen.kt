@@ -57,7 +57,6 @@ internal fun FilmsScreen(
                     LazyColumn {
                         items(uiState.films) { film ->
 
-                            Text(text = film.title)
                             StarWarsResourceCardExpanded(
                                 title = film.title,
                                 descriptions = listOf(
