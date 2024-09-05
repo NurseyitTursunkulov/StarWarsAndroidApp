@@ -31,7 +31,6 @@ import com.example.data.Synchronizer
 import com.example.data.repository.StarWarsRepository
 import com.example.work.initializers.SyncConstraints
 import com.example.work.initializers.syncForegroundInfo
-import com.example.work.status.SyncSubscriber
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.CoroutineDispatcher
@@ -50,7 +49,6 @@ internal class SyncWorker @AssistedInject constructor(
     private val starWarsRepository: StarWarsRepository,
     @Dispatcher(NiaDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
 //    private val analyticsHelper: AnalyticsHelper,//todo remove
-    private val syncSubscriber: SyncSubscriber,
 ) : CoroutineWorker(appContext, workerParams), Synchronizer {
 
     override suspend fun getForegroundInfo(): ForegroundInfo =
@@ -60,7 +58,6 @@ internal class SyncWorker @AssistedInject constructor(
             Log.d("NURS", "69 DO WORK started sync")
         traceAsync("Sync", 0) {
 //            analyticsHelper.logSyncStarted()
-            syncSubscriber.subscribe()
 
             // First sync the repositories in parallel
             val syncedSuccessfully = awaitAll(

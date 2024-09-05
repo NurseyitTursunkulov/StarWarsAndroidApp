@@ -23,6 +23,7 @@ import com.example.network.model.ActorsResponse
 import com.example.network.model.FilmDTO
 import com.example.network.model.FilmResponse
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import kotlinx.coroutines.delay
 import kotlinx.serialization.json.Json
 import okhttp3.Call
 import okhttp3.MediaType.Companion.toMediaType
@@ -66,10 +67,12 @@ internal class RetrofitNiaNetwork @Inject constructor(
             .create(NetworkApi::class.java)
     }
     override suspend fun getActors(): List<ActorDTO> {
+        delay(5000)
         return networkApi.getAllPeople().results
     }
 
     override suspend fun getFilms(): List<FilmDTO> {
+        delay(4000)
         return networkApi.getAllFilms().results
     }
 }

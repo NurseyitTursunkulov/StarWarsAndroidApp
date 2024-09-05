@@ -17,8 +17,6 @@
 package com.example.work.di
 
 import com.example.data.util.SyncManager
-import com.example.work.status.StubSyncSubscriber
-import com.example.work.status.SyncSubscriber
 import com.example.work.status.WorkManagerSyncManager
 import dagger.Binds
 import dagger.Module
@@ -33,8 +31,4 @@ abstract class SyncModule {
         syncStatusMonitor: WorkManagerSyncManager,
     ): SyncManager
 
-    @Binds
-    internal abstract fun bindsSyncSubscriber(
-        syncSubscriber: StubSyncSubscriber,
-    ): SyncSubscriber
 }
