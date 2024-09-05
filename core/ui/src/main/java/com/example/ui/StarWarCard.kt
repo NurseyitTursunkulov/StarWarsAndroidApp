@@ -103,11 +103,11 @@ fun StarWarsResourceCardExpanded(
                 Column(modifier = Modifier.fillMaxWidth()) {
                     Spacer(modifier = Modifier.height(12.dp))
                     Row {
-                        NewsResourceTitle(
-                            title,
-                            modifier = Modifier
-//                                .fillMaxWidth(0.8f)
-                        )
+//                        NewsResourceTitle(
+//                            title,
+//                            modifier = Modifier
+////                                .fillMaxWidth(0.8f)
+//                        )
 //                        Spacer(modifier = Modifier.weight(1f))
                     }
                     Spacer(modifier = Modifier.height(8.dp))

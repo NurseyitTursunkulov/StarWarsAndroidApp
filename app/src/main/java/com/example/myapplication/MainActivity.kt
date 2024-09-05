@@ -22,9 +22,7 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
@@ -34,8 +32,6 @@ import androidx.metrics.performance.JankStats
 import com.example.data.util.NetworkMonitor
 import com.example.data.util.TimeZoneMonitor
 import com.example.designsystem.theme.NiaTheme
-import com.example.model.data.DarkThemeConfig
-import com.example.model.data.ThemeBrand
 import com.example.myapplication.ui.NiaApp
 import com.example.myapplication.ui.rememberNiaAppState
 import com.example.ui.LocalTimeZone
@@ -145,46 +141,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-/**
- * Returns `true` if the Android theme should be used, as a function of the [uiState].
- */
-@Composable
-private fun shouldUseAndroidTheme(
-    uiState: MainActivityUiState,
-): Boolean = when (uiState) {
-    MainActivityUiState.Loading -> false
-    is MainActivityUiState.Success -> when (uiState.userData.themeBrand) {
-        ThemeBrand.DEFAULT -> false
-        ThemeBrand.ANDROID -> true
-    }
-}
-
-/**
- * Returns `true` if the dynamic color is disabled, as a function of the [uiState].
- */
-@Composable
-private fun shouldDisableDynamicTheming(
-    uiState: MainActivityUiState,
-): Boolean = when (uiState) {
-    MainActivityUiState.Loading -> false
-    is MainActivityUiState.Success -> !uiState.userData.useDynamicColor
-}
-
-/**
- * Returns `true` if dark theme should be used, as a function of the [uiState] and the
- * current system context.
- */
-@Composable
-private fun shouldUseDarkTheme(
-    uiState: MainActivityUiState,
-): Boolean = when (uiState) {
-    MainActivityUiState.Loading -> isSystemInDarkTheme()
-    is MainActivityUiState.Success -> when (uiState.userData.darkThemeConfig) {
-        DarkThemeConfig.FOLLOW_SYSTEM -> isSystemInDarkTheme()
-        DarkThemeConfig.LIGHT -> false
-        DarkThemeConfig.DARK -> true
-    }
-}
 
 /**
  * The default light scrim, as defined by androidx and the platform:

@@ -19,7 +19,6 @@ package com.example.myapplication
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.model.data.UserData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -47,9 +46,4 @@ class MainActivityViewModel @Inject constructor(
 //        initialValue = MainActivityUiState.Loading,
 //        started = SharingStarted.WhileSubscribed(5_000),
 //    )
-}
-
-sealed interface MainActivityUiState {
-    data object Loading : MainActivityUiState
-    data class Success(val userData: UserData) : MainActivityUiState
 }
