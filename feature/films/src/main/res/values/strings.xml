@@ -15,7 +15,7 @@
      limitations under the License.
 -->
 <resources>
-    <string name="films_interests_title">Interests</string>
+    <string name="films_interests_title">Films</string>
     <string name="films_interests_loading">Loading data</string>
     <string name="films_interests_empty_header">"No available data"</string>
 </resources>
