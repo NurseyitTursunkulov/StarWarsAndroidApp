@@ -56,11 +56,7 @@ class MainActivity : ComponentActivity() {
             val darkTheme = isSystemInDarkTheme()
 
             val appState = rememberAppState(networkMonitor = networkMonitor)
-            AppTheme(
-                darkTheme = darkTheme,
-                androidTheme = true,
-                disableDynamicTheming = true,
-            ) {
+            AppTheme(darkTheme = darkTheme) {
                 App(appState)
             }
         }
