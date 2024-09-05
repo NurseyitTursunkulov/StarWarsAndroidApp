@@ -22,7 +22,6 @@ import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.util.DebugLogger
 import com.example.network.NetworkDataSource
-import com.example.network.demo.DemoAssetManager
 import com.example.network.retrofit.RetrofitNiaNetwork
 import dagger.Module
 import dagger.Provides
@@ -45,23 +44,12 @@ internal object NetworkModule {
                okhttpCallFactory: dagger.Lazy<Call.Factory>,): NetworkDataSource {
         return RetrofitNiaNetwork(networkJson,okhttpCallFactory)
     }
-//@Provides
-//@Singleton
-//fun provide(
-//          networkJson: Json,): NiaNetworkDataSource{
-//    return DemoNiaNetworkDataSource(Dispatchers.IO,networkJson)
-//}
+
     @Provides
     @Singleton
     fun providesNetworkJson(): Json = Json {
         ignoreUnknownKeys = true
     }
-
-    @Provides
-    @Singleton
-    fun providesDemoAssetManager(
-        @ApplicationContext context: Context,
-    ): DemoAssetManager = DemoAssetManager(context.assets::open)
 
     @Provides
     @Singleton

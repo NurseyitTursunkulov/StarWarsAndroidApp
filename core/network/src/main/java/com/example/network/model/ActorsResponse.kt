@@ -3,7 +3,7 @@ package com.example.network.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class PeopleResponse(
+data class ActorsResponse(
     val count: Int,
     val next: String?,
     val previous: String?,
