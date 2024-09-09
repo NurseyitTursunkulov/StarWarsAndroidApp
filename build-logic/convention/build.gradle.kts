@@ -69,11 +69,6 @@ gradlePlugin {
             id = "nowinandroid.android.room"
             implementationClass = "AndroidRoomConventionPlugin"
         }
-
-        register("androidLint") {
-            id = "nowinandroid.android.lint"
-            implementationClass = "AndroidLintConventionPlugin"
-        }
         register("jvmLibrary") {
             id = "nowinandroid.jvm.library"
             implementationClass = "JvmLibraryConventionPlugin"
