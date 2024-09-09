@@ -57,10 +57,6 @@ gradlePlugin {
             id = "nowinandroid.android.feature"
             implementationClass = "AndroidFeatureConventionPlugin"
         }
-        register("androidLibraryJacoco") {
-            id = "nowinandroid.android.library.jacoco"
-            implementationClass = "AndroidLibraryJacocoConventionPlugin"
-        }
         register("androidTest") {
             id = "nowinandroid.android.test"
             implementationClass = "AndroidTestConventionPlugin"
