@@ -17,7 +17,10 @@
 package com.example.myapplication.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.navigation.compose.NavHost
 import com.example.actors.navigation.ACTORS_ROUTE
 import com.example.actors.navigation.actorsScreen
@@ -31,6 +34,7 @@ import com.example.myapplication.ui.AppState
  * The navigation graph defined in this file defines the different top level routes. Navigation
  * within each route is handled using state and Back Handlers.
  */
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun NavHost(
     appState: AppState,
@@ -41,7 +45,9 @@ fun NavHost(
     NavHost(
         navController = navController,
         startDestination = startDestination,
-        modifier = modifier,
+        modifier = modifier.semantics {
+            testTagsAsResourceId = true
+        },
     ) {
         actorsScreen()
         filmsScreen()
