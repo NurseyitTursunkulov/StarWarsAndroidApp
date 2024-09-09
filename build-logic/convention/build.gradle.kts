@@ -45,10 +45,6 @@ gradlePlugin {
             id = "nowinandroid.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
         }
-        register("androidApplicationJacoco") {
-            id = "nowinandroid.android.application.jacoco"
-            implementationClass = "AndroidApplicationJacocoConventionPlugin"
-        }
         register("androidLibraryCompose") {
             id = "nowinandroid.android.library.compose"
             implementationClass = "AndroidLibraryComposeConventionPlugin"

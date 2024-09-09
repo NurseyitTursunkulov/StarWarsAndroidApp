@@ -5,7 +5,6 @@ plugins {
 
     alias(libs.plugins.nowinandroid.android.application)//todo rename
     alias(libs.plugins.nowinandroid.android.application.compose)
-    alias(libs.plugins.nowinandroid.android.application.jacoco)
     alias(libs.plugins.nowinandroid.hilt)
     id("com.google.android.gms.oss-licenses-plugin")
     alias(libs.plugins.roborazzi)
