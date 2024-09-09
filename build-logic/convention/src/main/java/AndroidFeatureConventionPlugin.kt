@@ -15,7 +15,6 @@
  */
 
 import com.android.build.gradle.LibraryExtension
-import com.example.convention.configureGradleManagedDevices
 import com.example.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -31,7 +30,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             }
             extensions.configure<LibraryExtension> {
                 testOptions.animationsDisabled = true
-                configureGradleManagedDevices(this)
+//                configureGradleManagedDevices(this)
             }
 
             dependencies {

@@ -16,7 +16,6 @@
 
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
-import com.example.convention.configureGradleManagedDevices
 import com.example.convention.configureKotlinAndroid
 import com.example.convention.disableUnnecessaryAndroidTests
 import com.example.convention.libs
@@ -41,7 +40,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 defaultConfig.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                 testOptions.animationsDisabled = true
 //                configureFlavors(this)
-                configureGradleManagedDevices(this)
+//                configureGradleManagedDevices(this)
                 // The resource prefix is derived from the module name,
                 // so resources inside ":core:module1" must be prefixed with "core_module1_"
                 resourcePrefix = path.split("""\W""".toRegex()).drop(1).distinct().joinToString(separator = "_").lowercase() + "_"
