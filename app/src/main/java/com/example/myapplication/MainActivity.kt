@@ -21,7 +21,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.metrics.performance.JankStats
 import com.example.data.util.NetworkMonitor
 import com.example.designsystem.theme.AppTheme
 import com.example.myapplication.ui.App
@@ -34,12 +33,6 @@ private const val TAG = "MainActivity"
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    /**
-     * Lazily inject [JankStats], which is used to track jank throughout the app.
-     */
-    @Inject
-    lateinit var lazyStats: dagger.Lazy<JankStats>
-
     @Inject
     lateinit var networkMonitor: NetworkMonitor
 
@@ -47,9 +40,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Turn off the decor fitting system windows, which allows us to handle insets,
-        // including IME animations, and go edge-to-edge
-        // This also sets up the initial system bar style based on the platform theme
         enableEdgeToEdge()
 
         setContent {
@@ -60,16 +50,6 @@ class MainActivity : ComponentActivity() {
                 App(appState)
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        lazyStats.get().isTrackingEnabled = true
-    }
-
-    override fun onPause() {
-        super.onPause()
-        lazyStats.get().isTrackingEnabled = false
     }
 }
 
