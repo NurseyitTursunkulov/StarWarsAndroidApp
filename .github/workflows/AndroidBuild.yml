@@ -9,6 +9,8 @@ jobs:
   test:
     name: Run Android Tests
     runs-on: ubuntu-latest
+    env:
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
 
     steps:
       # Step 1: Checkout the code
