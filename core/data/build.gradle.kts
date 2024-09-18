@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.nowinandroid.android.library)
-    alias(libs.plugins.nowinandroid.hilt)
+    alias(libs.plugins.my.android.library)
+    alias(libs.plugins.my.hilt)
     id("kotlinx-serialization")
 }
 

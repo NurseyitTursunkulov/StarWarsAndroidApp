@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.nowinandroid.android.feature)
-    alias(libs.plugins.nowinandroid.android.library.compose)
+    alias(libs.plugins.my.android.feature)
+    alias(libs.plugins.my.android.library.compose)
     alias(libs.plugins.roborazzi)
 }
 

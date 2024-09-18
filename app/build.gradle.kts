@@ -1,11 +1,7 @@
 plugins {
-//    alias(libs.plugins.android.application)
-//    alias(libs.plugins.jetbrains.kotlin.android)
-//    alias(libs.plugins.compose.compiler)
-
-    alias(libs.plugins.nowinandroid.android.application)//todo rename
-    alias(libs.plugins.nowinandroid.android.application.compose)
-    alias(libs.plugins.nowinandroid.hilt)
+    alias(libs.plugins.my.android.application)//todo rename
+    alias(libs.plugins.my.android.application.compose)
+    alias(libs.plugins.my.hilt)
     id("com.google.android.gms.oss-licenses-plugin")
     alias(libs.plugins.roborazzi)
 }
