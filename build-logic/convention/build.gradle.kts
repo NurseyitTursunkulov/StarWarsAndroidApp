@@ -36,39 +36,39 @@ tasks {
 gradlePlugin {
     plugins {
         register("androidApplicationCompose") {
-            id = "nowinandroid.android.application.compose"
+            id = "my.android.application.compose"
             implementationClass = "AndroidApplicationComposeConventionPlugin"
         }
         register("androidApplication") {
-            id = "nowinandroid.android.application"
+            id = "my.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
         }
         register("androidLibraryCompose") {
-            id = "nowinandroid.android.library.compose"
+            id = "my.android.library.compose"
             implementationClass = "AndroidLibraryComposeConventionPlugin"
         }
         register("androidLibrary") {
-            id = "nowinandroid.android.library"
+            id = "my.android.library"
             implementationClass = "AndroidLibraryConventionPlugin"
         }
         register("androidFeature") {
-            id = "nowinandroid.android.feature"
+            id = "my.android.feature"
             implementationClass = "AndroidFeatureConventionPlugin"
         }
         register("androidTest") {
-            id = "nowinandroid.android.test"
+            id = "my.android.test"
             implementationClass = "AndroidTestConventionPlugin"
         }
         register("hilt") {
-            id = "nowinandroid.hilt"
+            id = "my.hilt"
             implementationClass = "HiltConventionPlugin"
         }
         register("androidRoom") {
-            id = "nowinandroid.android.room"
+            id = "my.android.room"
             implementationClass = "AndroidRoomConventionPlugin"
         }
         register("jvmLibrary") {
-            id = "nowinandroid.jvm.library"
+            id = "my.jvm.library"
             implementationClass = "JvmLibraryConventionPlugin"
         }
     }
